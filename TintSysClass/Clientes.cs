@@ -95,11 +95,47 @@ namespace TintSysClass
         }
 
         /// <summary>
+        /// Método para listar clientes, caso o usuário escrever as primeiras letras do nome do cliente
+        /// aparecerá o cliente especificado pelas letras, caso o usuário não digite as primeiras letras
+        /// do cliente a consulta retorna todos os clientes.
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <returns></returns>
+        public List<Clientes> Listar(string nome = "")
+        {
+            List<Clientes> list = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandType= CommandType.Text;
+            if(nome!=string.Empty)
+            {
+                cmd.CommandText = "select * from clientes where nome like '&"+ Nome +"&'";
+            }
+            else
+            {
+                cmd.CommandText = "select * from clientes";
+            }
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                list.Add(new Clientes(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetDateTime(4),
+                    dr.GetBoolean(5)
+                    ));
+            }
+            Banco.Fechar(cmd);
+            return list;
+        }
+
+        /// <summary>
         /// Método para chamar por id o cliente especificado.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Clientes ObterPorId(int id)
+        public static Clientes ObterPorId(int id)
         {
             Clientes cliente = null;
             var cmd = Banco.Abrir();

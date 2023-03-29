@@ -38,6 +38,15 @@ namespace TintSysClass
 
         //métodos construtores
         public Enderecos() { }
+        public Enderecos(string bairro)
+        {
+            Bairro= bairro;
+        }
+        public Enderecos(string logradouro, string cep)
+        {
+            Logradouro = logradouro;
+            Cep= cep;
+        }
         public Enderecos(int id, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
         {
             Id = id;
@@ -92,12 +101,42 @@ namespace TintSysClass
             Banco.Fechar(cmd);
         }
 
-        public void BuscarPorBairro()
-        {
-            var cmd = Banco.Abrir();
-            cmd.CommandText = "select bairro from enderecos set bairro = @bairro";
+       
 
+        public Enderecos BuscarPorBairro()
+        {
+            Enderecos enderecos = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select from enderecos where bairro = @bairro";
+            cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = Bairro;
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                enderecos = new Enderecos(
+                    dr.GetString(5)
+                    );
+            }
             Banco.Fechar(cmd);
+            return enderecos;
+        }
+
+        public Enderecos BuscarPorCepERua()
+        {
+            Enderecos enderecos = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select from enderecos set cep = @cep and logradouro = @logradouro";
+            cmd.Parameters.Add("@cep", MySqlDbType.VarChar).Value = Cep;
+            cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = Logradouro;
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                enderecos = new Enderecos(
+                    dr.GetString(1),
+                    dr.GetString(2)
+                    );
+            }
+            Banco.Fechar(cmd);
+            return enderecos;
         }
     }
 }

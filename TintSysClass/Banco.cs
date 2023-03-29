@@ -17,7 +17,7 @@ namespace TintSysClass
 
         public static MySqlCommand Abrir()
         {
-            strConn = @"server=localhost;database=ti93sysdb;port=3306;user id=root";
+            strConn = @"server=127.0.0.1;database=ti93sysdb;port=3306;user id=root;password=usbw";
             MySqlCommand cmd = new MySqlCommand();
             try //tentar abrir
             {

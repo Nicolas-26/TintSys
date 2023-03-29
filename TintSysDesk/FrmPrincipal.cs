@@ -23,5 +23,10 @@ namespace TintSysDesk
             frmUsuarios.MdiParent = this;
             frmUsuarios.Show();
         }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -104,6 +104,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TINT SYS CLASS 1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.mspPrincipal.ResumeLayout(false);
             this.mspPrincipal.PerformLayout();
             this.ResumeLayout(false);
