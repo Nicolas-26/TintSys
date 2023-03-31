@@ -26,8 +26,8 @@ namespace TintSysClass
         public string Email { get { return email; } set { email = value; } }
         public DateTime Data { get { return data; } set { data = value; } }
         public bool Ativo { get { return ativo; } set { ativo = value; } }
-        public Telefones Telefones { get; set; }
-        public Enderecos Enderecos { get; set; }
+        public List<Telefone> Telefones { get; set; }
+        public List<Endereco> Enderecos { get; set; }
 
         //métodos construtores
         public Clientes() { }
@@ -37,7 +37,7 @@ namespace TintSysClass
             Cpf = cpf;
             Email = email;
         }
-        public Clientes(string nome, string cpf, string email, DateTime data, bool ativo, Telefones telefones, Enderecos enderecos)
+        public Clientes(string nome, string cpf, string email, DateTime data, bool ativo, List<Telefone> telefones, List<Endereco> enderecos)
         {
             Nome = nome;
             Cpf = cpf;
@@ -47,7 +47,7 @@ namespace TintSysClass
             Telefones = telefones;
             Enderecos = enderecos;
         }
-        public Clientes(string nome, string cpf, string email, DateTime data, Telefones telefones, Enderecos enderecos)
+        public Clientes(string nome, string cpf, string email, DateTime data, List<Telefone> telefones, List<Endereco> enderecos)
         {
             Nome = nome;
             Cpf = cpf;
@@ -66,13 +66,14 @@ namespace TintSysClass
             Ativo = ativo;
         }
 
-        //métodos de acesso
-        public void FazCadastro()
+        public Clientes(int id)
         {
-            var cmd = Banco.Abrir();
-            cmd.CommandText = "";
-            Banco.Fechar(cmd);
-        }
+            Telefones = Telefone.ListarPorCliente(id);
+            Enderecos = Endereco.ListarPorCliente(id);
+        }   
+
+        //métodos de acesso
+       
 
         /// <summary>
         /// Método para inserir meus elementos na tabela Clientes no Banco de dados,
@@ -82,15 +83,18 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert clientes (nome, cpf, email, datacad, ativo)" +
-                "values (@nome, @cpf, @email, @data, @ativo)";
-            cmd.Parameters.AddWithValue("@nome", Nome);
-            cmd.Parameters.AddWithValue("@cpf", Cpf);
-            cmd.Parameters.AddWithValue("@email", Email);
-            cmd.Parameters.AddWithValue("@data", Data);
-            cmd.Parameters.AddWithValue("@ativo", Ativo);
+                "values ('"+Nome+"','"+Cpf+"','"+Email+"','"+Data+"','"+'1'+"')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
+            foreach (var enderecos in Enderecos)
+            {
+                enderecos.Inserir(id);
+            }
+            foreach(var telefones in Telefones)
+            {
+                telefones.Inserir(id);
+            }
             Banco.Fechar(cmd);
         }
 
@@ -112,7 +116,7 @@ namespace TintSysClass
             }
             else
             {
-                cmd.CommandText = "select * from clientes";
+                cmd.CommandText = "select * from clientes order by nome asc";
             }
             var dr = cmd.ExecuteReader();
             while(dr.Read())

@@ -79,14 +79,14 @@
     <Compile Include="Nivel.cs" />
     <Compile Include="Caixas.cs" />
     <Compile Include="Clientes.cs" />
-    <Compile Include="Enderecos.cs" />
+    <Compile Include="Endereco.cs" />
     <Compile Include="ItemPedido.cs" />
     <Compile Include="Banco.cs" />
     <Compile Include="Pagamentos.cs" />
     <Compile Include="Pedidos.cs" />
     <Compile Include="Produtos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Telefones.cs" />
+    <Compile Include="Telefone.cs" />
     <Compile Include="Tipos.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="Vendas.cs" />

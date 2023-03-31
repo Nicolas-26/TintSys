@@ -24,8 +24,9 @@ namespace TintSysClass
 
         //métodos construtores
         public Telefones() { }
-        public Telefones(string numero, string tipo)
+        public Telefones(int id, string numero, string tipo)
         {
+            this.id = Id;
             this.numero = Numero;
             this.tipo = Tipo;
         }
@@ -42,14 +43,11 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir o telefone do Cliente cujo está em outra tabela.
         /// </summary>
-        public void Inserir()
+        public void Inserir(int cliente_id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert telefones (numero, tipo, cliente_id)" +
-                "values (@numero, @tipo, @cliente_id)";
-            cmd.Parameters.AddWithValue("@numero", Numero);
-            cmd.Parameters.AddWithValue("@tipo", Tipo);
-            cmd.Parameters.AddWithValue("@cliente_id", Clientes.Id);
+                "values (" + cliente_id + ",'" + Numero + "','" + Tipo + "')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -61,22 +59,20 @@ namespace TintSysClass
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Telefones BuscarPorId(int id)
+        public static List<Telefones> ListarPorCliente(int cliente_id)
         {
-            Telefones telefones = null;
+            List<Telefones> telefones = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select * from telefones where id = "+id;
+            cmd.CommandText = "select id, numero, tipo from telefones where ciente_id = " + cliente_id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                telefones = new Telefones(
+                telefones.Add(new Telefones(
                     dr.GetInt32(0),
                     dr.GetString(1),
-                    dr.GetString(2),
-                    Clientes.ObterPorId(dr.GetInt32(3))
-                    );
+                    dr.GetString(2)
+                    ));
             }
-
             Banco.Fechar(cmd);
             return telefones;
         }

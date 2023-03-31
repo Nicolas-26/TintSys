@@ -47,7 +47,7 @@ namespace TintSysClass
             Logradouro = logradouro;
             Cep= cep;
         }
-        public Enderecos(int id, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
+        public Enderecos(int id, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo)
         {
             Id = id;
             Cep = cep;
@@ -59,7 +59,6 @@ namespace TintSysClass
             Estado = estado;
             UF = uf;
             Tipo = tipo;
-            Clientes = clientes;
         }
         public Enderecos(string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
         {
@@ -80,28 +79,40 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir as informações do meu cliente.
         /// </summary>
-        public void Inserir()
+        public void Inserir(int cliente_id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "insert enderecos (cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo, cliente_id)" +
-                "values (@cep, @logradouro, @numero, @complemento, @bairro, @cidade, @estado, @uf, @tipo, @cliente_id)";
-            cmd.Parameters.AddWithValue("@cep", Cep);
-            cmd.Parameters.AddWithValue("@logradouro", Logradouro);
-            cmd.Parameters.AddWithValue("@numero", Numero);
-            cmd.Parameters.AddWithValue("@complemento", Complemento);
-            cmd.Parameters.AddWithValue("@bairro", Bairro);
-            cmd.Parameters.AddWithValue("@cidade", Cidade);
-            cmd.Parameters.AddWithValue("@estado", Estado);
-            cmd.Parameters.AddWithValue("@uf", UF);
-            cmd.Parameters.AddWithValue("@tipo", Tipo);
-            cmd.Parameters.AddWithValue("@cliente_id", Clientes.Id);
+            cmd.CommandText = "insert enderecos (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo)" +
+                "values ("+cliente_id+",'"+Cep+"','"+Logradouro+"','"+Numero+"','"+Complemento+"','"+Bairro+"','"+Cidade+"','"+Estado+"','"+UF+"','"+Tipo+"')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
         }
 
-       
+        public static List<Enderecos> ListarPorCliente(int cliente_id)
+        {
+            List<Enderecos> list = new List<Enderecos>();
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo where cliente_id = " + cliente_id;
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                list.Add(new Enderecos(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetString(4),
+                    dr.GetString(5),
+                    dr.GetString(6),
+                    dr.GetString(7),
+                    dr.GetString(8),
+                    dr.GetString(9)
+                    ));
+            }
+            return list;
+        }
 
         public Enderecos BuscarPorBairro()
         {
