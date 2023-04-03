@@ -49,23 +49,23 @@
             this.clnNivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtIdNível = new System.Windows.Forms.TextBox();
-            this.txtNomeNível = new System.Windows.Forms.TextBox();
-            this.txtSigla = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSigla = new System.Windows.Forms.TextBox();
+            this.txtNomeNível = new System.Windows.Forms.TextBox();
+            this.txtIdNível = new System.Windows.Forms.TextBox();
+            this.btnConsultarNível = new System.Windows.Forms.Button();
+            this.btnInserirNível = new System.Windows.Forms.Button();
+            this.btnEditarNível = new System.Windows.Forms.Button();
+            this.dgvNíveis = new System.Windows.Forms.DataGridView();
             this.clnIdNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnNomeNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnSiglaNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDeleteNível = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnConsultarNível = new System.Windows.Forms.Button();
-            this.btnInserirNível = new System.Windows.Forms.Button();
-            this.btnEditarNível = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNíveis)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConsultar
@@ -94,6 +94,7 @@
             this.btnInserir.TabIndex = 0;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // labelNome
             // 
@@ -261,46 +262,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Níveis";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // txtIdNível
-            // 
-            this.txtIdNível.Location = new System.Drawing.Point(69, 24);
-            this.txtIdNível.Name = "txtIdNível";
-            this.txtIdNível.Size = new System.Drawing.Size(41, 20);
-            this.txtIdNível.TabIndex = 2;
-            // 
-            // txtNomeNível
-            // 
-            this.txtNomeNível.Location = new System.Drawing.Point(69, 60);
-            this.txtNomeNível.Name = "txtNomeNível";
-            this.txtNomeNível.Size = new System.Drawing.Size(142, 20);
-            this.txtNomeNível.TabIndex = 2;
-            // 
-            // txtSigla
-            // 
-            this.txtSigla.Location = new System.Drawing.Point(69, 99);
-            this.txtSigla.Name = "txtSigla";
-            this.txtSigla.Size = new System.Drawing.Size(62, 20);
-            this.txtSigla.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "ID";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Nome";
             // 
             // label3
             // 
@@ -311,21 +272,102 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Sigla";
             // 
-            // dataGridView1
+            // label2
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Nome";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ID";
+            // 
+            // txtSigla
+            // 
+            this.txtSigla.Location = new System.Drawing.Point(69, 99);
+            this.txtSigla.Name = "txtSigla";
+            this.txtSigla.Size = new System.Drawing.Size(62, 20);
+            this.txtSigla.TabIndex = 2;
+            // 
+            // txtNomeNível
+            // 
+            this.txtNomeNível.Location = new System.Drawing.Point(69, 60);
+            this.txtNomeNível.Name = "txtNomeNível";
+            this.txtNomeNível.Size = new System.Drawing.Size(142, 20);
+            this.txtNomeNível.TabIndex = 2;
+            // 
+            // txtIdNível
+            // 
+            this.txtIdNível.Location = new System.Drawing.Point(69, 24);
+            this.txtIdNível.Name = "txtIdNível";
+            this.txtIdNível.Size = new System.Drawing.Size(41, 20);
+            this.txtIdNível.TabIndex = 2;
+            // 
+            // btnConsultarNível
+            // 
+            this.btnConsultarNível.FlatAppearance.BorderSize = 0;
+            this.btnConsultarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnConsultarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarNível.Image = global::TintSysDesk.Properties.Resources.Search;
+            this.btnConsultarNível.Location = new System.Drawing.Point(136, 135);
+            this.btnConsultarNível.Name = "btnConsultarNível";
+            this.btnConsultarNível.Size = new System.Drawing.Size(75, 48);
+            this.btnConsultarNível.TabIndex = 1;
+            this.btnConsultarNível.Text = "Consultar";
+            this.btnConsultarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarNível.UseVisualStyleBackColor = true;
+            // 
+            // btnInserirNível
+            // 
+            this.btnInserirNível.FlatAppearance.BorderSize = 0;
+            this.btnInserirNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnInserirNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInserirNível.Image = global::TintSysDesk.Properties.Resources.Add;
+            this.btnInserirNível.Location = new System.Drawing.Point(31, 135);
+            this.btnInserirNível.Name = "btnInserirNível";
+            this.btnInserirNível.Size = new System.Drawing.Size(75, 48);
+            this.btnInserirNível.TabIndex = 0;
+            this.btnInserirNível.Text = "Inserir";
+            this.btnInserirNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInserirNível.UseVisualStyleBackColor = true;
+            // 
+            // btnEditarNível
+            // 
+            this.btnEditarNível.FlatAppearance.BorderSize = 0;
+            this.btnEditarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnEditarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarNível.Image = global::TintSysDesk.Properties.Resources.Edit;
+            this.btnEditarNível.Location = new System.Drawing.Point(262, 135);
+            this.btnEditarNível.Name = "btnEditarNível";
+            this.btnEditarNível.Size = new System.Drawing.Size(75, 48);
+            this.btnEditarNível.TabIndex = 0;
+            this.btnEditarNível.Text = "Editar";
+            this.btnEditarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditarNível.UseVisualStyleBackColor = true;
+            // 
+            // dgvNíveis
+            // 
+            this.dgvNíveis.AllowUserToAddRows = false;
+            this.dgvNíveis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNíveis.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clnIdNível,
             this.clnNomeNível,
             this.clnSiglaNível,
             this.clnDeleteNível});
-            this.dataGridView1.Location = new System.Drawing.Point(742, 249);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(343, 200);
-            this.dataGridView1.TabIndex = 8;
+            this.dgvNíveis.Location = new System.Drawing.Point(742, 249);
+            this.dgvNíveis.Name = "dgvNíveis";
+            this.dgvNíveis.ReadOnly = true;
+            this.dgvNíveis.RowHeadersVisible = false;
+            this.dgvNíveis.Size = new System.Drawing.Size(343, 200);
+            this.dgvNíveis.TabIndex = 8;
             // 
             // clnIdNível
             // 
@@ -360,55 +402,12 @@
             this.clnDeleteNível.Text = "Excluir";
             this.clnDeleteNível.Width = 79;
             // 
-            // btnConsultarNível
-            // 
-            this.btnConsultarNível.FlatAppearance.BorderSize = 0;
-            this.btnConsultarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnConsultarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarNível.Image = global::TintSysDesk.Properties.Resources.Search;
-            this.btnConsultarNível.Location = new System.Drawing.Point(136, 135);
-            this.btnConsultarNível.Name = "btnConsultarNível";
-            this.btnConsultarNível.Size = new System.Drawing.Size(75, 48);
-            this.btnConsultarNível.TabIndex = 1;
-            this.btnConsultarNível.Text = "Consultar";
-            this.btnConsultarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultarNível.UseVisualStyleBackColor = true;
-            this.btnConsultarNível.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnInserirNível
-            // 
-            this.btnInserirNível.FlatAppearance.BorderSize = 0;
-            this.btnInserirNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnInserirNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInserirNível.Image = global::TintSysDesk.Properties.Resources.Add;
-            this.btnInserirNível.Location = new System.Drawing.Point(31, 135);
-            this.btnInserirNível.Name = "btnInserirNível";
-            this.btnInserirNível.Size = new System.Drawing.Size(75, 48);
-            this.btnInserirNível.TabIndex = 0;
-            this.btnInserirNível.Text = "Inserir";
-            this.btnInserirNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnInserirNível.UseVisualStyleBackColor = true;
-            // 
-            // btnEditarNível
-            // 
-            this.btnEditarNível.FlatAppearance.BorderSize = 0;
-            this.btnEditarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnEditarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditarNível.Image = global::TintSysDesk.Properties.Resources.Edit;
-            this.btnEditarNível.Location = new System.Drawing.Point(262, 135);
-            this.btnEditarNível.Name = "btnEditarNível";
-            this.btnEditarNível.Size = new System.Drawing.Size(75, 48);
-            this.btnEditarNível.TabIndex = 0;
-            this.btnEditarNível.Text = "Editar";
-            this.btnEditarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditarNível.UseVisualStyleBackColor = true;
-            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1144, 462);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvNíveis);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.checkBox1);
@@ -431,7 +430,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNíveis)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,7 +468,7 @@
         private System.Windows.Forms.TextBox txtNomeNível;
         private System.Windows.Forms.TextBox txtIdNível;
         private System.Windows.Forms.Button btnInserirNível;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvNíveis;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnIdNível;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnNomeNível;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnSiglaNível;

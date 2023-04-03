@@ -83,7 +83,7 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert clientes (nome, cpf, email, datacad, ativo)" +
-                "values ('"+Nome+"','"+Cpf+"','"+Email+"','"+Data+"','"+'1'+"')";
+                "values ('"+Nome+"','"+Cpf+"','"+Email+"',default, default)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());

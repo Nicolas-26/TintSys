@@ -121,7 +121,7 @@ namespace TintSysClass
         /// </summary>
         /// <param name="_id"></param>
         /// <returns></returns>
-        public int Excluir(int _id)
+        public static int Excluir(int _id)
         {
             int msg = 0;
             var cmd = Banco.Abrir();

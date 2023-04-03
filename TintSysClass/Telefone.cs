@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace TintSysClass
 {
-    public class Telefones
+    public class Telefone
     {
         //atributos
         private int id;
@@ -23,14 +23,14 @@ namespace TintSysClass
         public Clientes Clientes { get { return clientes; } set { clientes = value; } } 
 
         //métodos construtores
-        public Telefones() { }
-        public Telefones(int id, string numero, string tipo)
+        public Telefone() { }
+        public Telefone(int id, string numero, string tipo)
         {
             this.id = Id;
             this.numero = Numero;
             this.tipo = Tipo;
         }
-        public Telefones(int id, string numero, string tipo, Clientes clientes)
+        public Telefone(int id, string numero, string tipo, Clientes clientes)
         {
             this.id = Id;
             this.numero = Numero;
@@ -46,7 +46,7 @@ namespace TintSysClass
         public void Inserir(int cliente_id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "insert telefones (numero, tipo, cliente_id)" +
+            cmd.CommandText = "insert telefones (cliente_id, numero, tipo)" +
                 "values (" + cliente_id + ",'" + Numero + "','" + Tipo + "')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
@@ -59,21 +59,20 @@ namespace TintSysClass
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static List<Telefones> ListarPorCliente(int cliente_id)
+        public static List<Telefone> ListarPorCliente(int cliente_id)
         {
-            List<Telefones> telefones = null;
+            List<Telefone> telefones = null;
             var cmd = Banco.Abrir();
             cmd.CommandText = "select id, numero, tipo from telefones where ciente_id = " + cliente_id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                telefones.Add(new Telefones(
+                telefones.Add(new Telefone(
                     dr.GetInt32(0),
                     dr.GetString(1),
                     dr.GetString(2)
                     ));
             }
-            Banco.Fechar(cmd);
             return telefones;
         }
       

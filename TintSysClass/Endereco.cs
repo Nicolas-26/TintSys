@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace TintSysClass
 {
-    public class Enderecos
+    public class Endereco
     {
         //atributos
         private int id;
@@ -21,7 +21,6 @@ namespace TintSysClass
         private string estado;
         private string uf;
         private string tipo;
-        private Clientes clientes;
 
         //propriedades
         public int Id { get { return id; } set {  id = value; } }
@@ -37,17 +36,17 @@ namespace TintSysClass
         public Clientes Clientes { get; set; }
 
         //métodos construtores
-        public Enderecos() { }
-        public Enderecos(string bairro)
+        public Endereco() { }
+        public Endereco(string bairro)
         {
             Bairro= bairro;
         }
-        public Enderecos(string logradouro, string cep)
+        public Endereco(string logradouro, string cep)
         {
             Logradouro = logradouro;
             Cep= cep;
         }
-        public Enderecos(int id, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo)
+        public Endereco(int id, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo)
         {
             Id = id;
             Cep = cep;
@@ -60,7 +59,7 @@ namespace TintSysClass
             UF = uf;
             Tipo = tipo;
         }
-        public Enderecos(string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
+        public Endereco(string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
         {
             Cep = cep;
             Logradouro = logradouro;
@@ -90,15 +89,15 @@ namespace TintSysClass
             Banco.Fechar(cmd);
         }
 
-        public static List<Enderecos> ListarPorCliente(int cliente_id)
+        public static List<Endereco> ListarPorCliente(int cliente_id)
         {
-            List<Enderecos> list = new List<Enderecos>();
+            List<Endereco> list = new List<Endereco>();
             var cmd = Banco.Abrir();
             cmd.CommandText = "select id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo where cliente_id = " + cliente_id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                list.Add(new Enderecos(
+                list.Add(new Endereco(
                     dr.GetInt32(0),
                     dr.GetString(1),
                     dr.GetString(2),
@@ -114,16 +113,16 @@ namespace TintSysClass
             return list;
         }
 
-        public Enderecos BuscarPorBairro()
+        public Endereco BuscarPorBairro()
         {
-            Enderecos enderecos = null;
+            Endereco enderecos = null;
             var cmd = Banco.Abrir();
             cmd.CommandText = "select from enderecos where bairro = @bairro";
             cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = Bairro;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                enderecos = new Enderecos(
+                enderecos = new Endereco(
                     dr.GetString(5)
                     );
             }
@@ -131,9 +130,9 @@ namespace TintSysClass
             return enderecos;
         }
 
-        public Enderecos BuscarPorCepERua()
+        public Endereco BuscarPorCepERua()
         {
-            Enderecos enderecos = null;
+            Endereco enderecos = null;
             var cmd = Banco.Abrir();
             cmd.CommandText = "select from enderecos set cep = @cep and logradouro = @logradouro";
             cmd.Parameters.Add("@cep", MySqlDbType.VarChar).Value = Cep;
@@ -141,7 +140,7 @@ namespace TintSysClass
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                enderecos = new Enderecos(
+                enderecos = new Endereco(
                     dr.GetString(1),
                     dr.GetString(2)
                     );

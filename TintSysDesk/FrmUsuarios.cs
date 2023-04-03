@@ -20,34 +20,20 @@ namespace TintSysDesk
 
         private void FrmUsuarios_Load(object sender, EventArgs e)
         {
+            comboBoxNivel.DataSource = Nivel.Listar();
+            comboBoxNivel.DisplayMember = "Id";
+            comboBoxNivel.DisplayMember = "Nome";
+        }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            Usuarios user = new Usuarios(
+                txtNome.Text, txtEmail.Text, txtSenha.Text,
+                Nivel.ObterPorId(Convert.ToInt32(comboBoxNivel.SelectedValue))
+                );
+            user.Inserir();
+            txtId.Text = user.Id.ToString();
             
-        }
-
-        private void AcessaGrid()
-        {
-            List<Usuarios> lista = Usuarios.Listar();
-            int linha = 0;
-            dgvUsuarios.Rows.Clear();
-            foreach (var usuario in lista)
-            {
-                dgvUsuarios.Rows.Add();
-                dgvUsuarios.Rows[linha].Cells[0].Value = usuario.Id.ToString();
-                dgvUsuarios.Rows[linha].Cells[1].Value = usuario.Nome;
-                dgvUsuarios.Rows[linha].Cells[2].Value = usuario.Email;
-                dgvUsuarios.Rows[linha].Cells[3].Value = usuario.Nivel.Nome;
-                dgvUsuarios.Rows[linha].Cells[4].Value = usuario.Ativo;
-                linha++;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
