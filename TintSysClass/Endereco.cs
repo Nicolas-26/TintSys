@@ -113,6 +113,29 @@ namespace TintSysClass
             return list;
         }
 
+        public void Atualizar()
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update from endereco set logradouro = @logradouro and bairro = @bairro";
+            cmd.Parameters.AddWithValue("@logardouro", Logradouro);
+            cmd.Parameters.AddWithValue("@bairro", Bairro);
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);  
+        }
+
+       // public Endereco BuscarCidade(string cidade = "")
+       // {
+        //    Endereco end = null;
+        //    var cmd = Banco.Abrir();
+        //    cmd.CommandText = "select * from enderecos where cidade like '&" + cidade + "&'";
+        //    var dr = cmd.ExecuteReader();
+        //    while(dr.Read())
+        //    {
+
+        //    }
+        //    return;
+       // }
+
         public Endereco BuscarPorBairro()
         {
             Endereco enderecos = null;
