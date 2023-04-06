@@ -56,7 +56,7 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert produtos (descricao, unidade, codbar, preco, desconto, descontinuado)"+
-                "values (@descricao, @unidade, @codbar, @preco, @desconto, 0)";
+                "values (@descricao, @unidade, @codbar, @preco, @desconto/100, 0)";
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
             cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
@@ -101,7 +101,7 @@ namespace TintSysClass
         {
             Produto prod = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select * from produto where id = " + id;
+            cmd.CommandText = "select * from produtos where id = " + id;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -119,7 +119,7 @@ namespace TintSysClass
             return prod;
         }
 
-        public void Atualizar(int id)
+        public void Atualizar()
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set descricao = @descricao, unidade = @unidade, codbar = @codbar, preco = @preco, desconto = @desconto where id = " + id;
@@ -132,18 +132,18 @@ namespace TintSysClass
             Banco.Fechar(cmd);
         }
 
-        public void Arquivar(int id)
+        public static void Arquivar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update from produto set descontinuado = 1 where id = " + id;
+            cmd.CommandText = "update produtos set descontinuado = 1 where id = " + id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
 
-        public void Restaurar(int id)
+        public static void Restaurar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update from produto set descontinuado = 0 where id = " + id;
+            cmd.CommandText = "update produtos set descontinuado = 0 where id = " + id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }

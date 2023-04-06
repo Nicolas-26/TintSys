@@ -30,22 +30,20 @@
         {
             this.tbcCliente = new System.Windows.Forms.TabControl();
             this.tpgDadosPessoais = new System.Windows.Forms.TabPage();
-            this.tpgEnderecos = new System.Windows.Forms.TabPage();
-            this.tpgTelefones = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBoxNivelCliente = new System.Windows.Forms.ComboBox();
+            this.txtCpfCliente = new System.Windows.Forms.TextBox();
             this.txtEmailCliente = new System.Windows.Forms.TextBox();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
-            this.labelNivel = new System.Windows.Forms.Label();
             this.labelCpf = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelNome = new System.Windows.Forms.Label();
             this.btnEditarCliente = new System.Windows.Forms.Button();
             this.btnInserirCliente = new System.Windows.Forms.Button();
             this.btnConsultarCliente = new System.Windows.Forms.Button();
-            this.txtCpfCliente = new System.Windows.Forms.TextBox();
+            this.tpgEnderecos = new System.Windows.Forms.TabPage();
+            this.tpgTelefones = new System.Windows.Forms.TabPage();
             this.tbcCliente.SuspendLayout();
             this.tpgDadosPessoais.SuspendLayout();
             this.SuspendLayout();
@@ -64,13 +62,11 @@
             // tpgDadosPessoais
             // 
             this.tpgDadosPessoais.Controls.Add(this.checkBox1);
-            this.tpgDadosPessoais.Controls.Add(this.comboBoxNivelCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtCpfCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtEmailCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtNomeCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtIdCliente);
             this.tpgDadosPessoais.Controls.Add(this.labelId);
-            this.tpgDadosPessoais.Controls.Add(this.labelNivel);
             this.tpgDadosPessoais.Controls.Add(this.labelCpf);
             this.tpgDadosPessoais.Controls.Add(this.labelEmail);
             this.tpgDadosPessoais.Controls.Add(this.labelNome);
@@ -85,26 +81,6 @@
             this.tpgDadosPessoais.Text = "Dados Pessoais";
             this.tpgDadosPessoais.UseVisualStyleBackColor = true;
             // 
-            // tpgEnderecos
-            // 
-            this.tpgEnderecos.Location = new System.Drawing.Point(4, 22);
-            this.tpgEnderecos.Name = "tpgEnderecos";
-            this.tpgEnderecos.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgEnderecos.Size = new System.Drawing.Size(318, 242);
-            this.tpgEnderecos.TabIndex = 1;
-            this.tpgEnderecos.Text = "Endereços";
-            this.tpgEnderecos.UseVisualStyleBackColor = true;
-            // 
-            // tpgTelefones
-            // 
-            this.tpgTelefones.Location = new System.Drawing.Point(4, 22);
-            this.tpgTelefones.Name = "tpgTelefones";
-            this.tpgTelefones.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgTelefones.Size = new System.Drawing.Size(318, 242);
-            this.tpgTelefones.TabIndex = 2;
-            this.tpgTelefones.Text = "Telefones";
-            this.tpgTelefones.UseVisualStyleBackColor = true;
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -115,13 +91,13 @@
             this.checkBox1.Text = "Ativo";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // comboBoxNivelCliente
+            // txtCpfCliente
             // 
-            this.comboBoxNivelCliente.FormattingEnabled = true;
-            this.comboBoxNivelCliente.Location = new System.Drawing.Point(184, 140);
-            this.comboBoxNivelCliente.Name = "comboBoxNivelCliente";
-            this.comboBoxNivelCliente.Size = new System.Drawing.Size(77, 21);
-            this.comboBoxNivelCliente.TabIndex = 18;
+            this.txtCpfCliente.Location = new System.Drawing.Point(56, 140);
+            this.txtCpfCliente.Name = "txtCpfCliente";
+            this.txtCpfCliente.Size = new System.Drawing.Size(72, 20);
+            this.txtCpfCliente.TabIndex = 14;
+            this.txtCpfCliente.UseSystemPasswordChar = true;
             // 
             // txtEmailCliente
             // 
@@ -152,15 +128,6 @@
             this.labelId.Size = new System.Drawing.Size(18, 13);
             this.labelId.TabIndex = 9;
             this.labelId.Text = "ID";
-            // 
-            // labelNivel
-            // 
-            this.labelNivel.AutoSize = true;
-            this.labelNivel.Location = new System.Drawing.Point(143, 143);
-            this.labelNivel.Name = "labelNivel";
-            this.labelNivel.Size = new System.Drawing.Size(31, 13);
-            this.labelNivel.TabIndex = 10;
-            this.labelNivel.Text = "Nivel";
             // 
             // labelCpf
             // 
@@ -197,6 +164,7 @@
             this.btnEditarCliente.TabIndex = 8;
             this.btnEditarCliente.Text = "Editar";
             this.btnEditarCliente.UseVisualStyleBackColor = true;
+            this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
             // 
             // btnInserirCliente
             // 
@@ -206,6 +174,7 @@
             this.btnInserirCliente.TabIndex = 6;
             this.btnInserirCliente.Text = "Inserir";
             this.btnInserirCliente.UseVisualStyleBackColor = true;
+            this.btnInserirCliente.Click += new System.EventHandler(this.btnInserirCliente_Click);
             // 
             // btnConsultarCliente
             // 
@@ -215,14 +184,27 @@
             this.btnConsultarCliente.TabIndex = 7;
             this.btnConsultarCliente.Text = "Consultar";
             this.btnConsultarCliente.UseVisualStyleBackColor = true;
+            this.btnConsultarCliente.Click += new System.EventHandler(this.btnConsultarCliente_Click);
             // 
-            // txtCpfCliente
+            // tpgEnderecos
             // 
-            this.txtCpfCliente.Location = new System.Drawing.Point(56, 140);
-            this.txtCpfCliente.Name = "txtCpfCliente";
-            this.txtCpfCliente.Size = new System.Drawing.Size(72, 20);
-            this.txtCpfCliente.TabIndex = 14;
-            this.txtCpfCliente.UseSystemPasswordChar = true;
+            this.tpgEnderecos.Location = new System.Drawing.Point(4, 22);
+            this.tpgEnderecos.Name = "tpgEnderecos";
+            this.tpgEnderecos.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgEnderecos.Size = new System.Drawing.Size(318, 304);
+            this.tpgEnderecos.TabIndex = 1;
+            this.tpgEnderecos.Text = "Endereços";
+            this.tpgEnderecos.UseVisualStyleBackColor = true;
+            // 
+            // tpgTelefones
+            // 
+            this.tpgTelefones.Location = new System.Drawing.Point(4, 22);
+            this.tpgTelefones.Name = "tpgTelefones";
+            this.tpgTelefones.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgTelefones.Size = new System.Drawing.Size(318, 304);
+            this.tpgTelefones.TabIndex = 2;
+            this.tpgTelefones.Text = "Telefones";
+            this.tpgTelefones.UseVisualStyleBackColor = true;
             // 
             // FrmCliente
             // 
@@ -247,12 +229,10 @@
         private System.Windows.Forms.TabPage tpgEnderecos;
         private System.Windows.Forms.TabPage tpgTelefones;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBoxNivelCliente;
         private System.Windows.Forms.TextBox txtEmailCliente;
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.TextBox txtIdCliente;
         private System.Windows.Forms.Label labelId;
-        private System.Windows.Forms.Label labelNivel;
         private System.Windows.Forms.Label labelCpf;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelNome;

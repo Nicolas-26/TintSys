@@ -66,10 +66,9 @@ namespace TintSysClass
             Ativo = ativo;
         }
 
-        public Clientes(int id)
+        public Clientes(string nome)
         {
-            Telefones = Telefone.ListarPorCliente(id);
-            Enderecos = Endereco.ListarPorCliente(id);
+            Nome = nome;
         }   
 
         //métodos de acesso
@@ -87,14 +86,14 @@ namespace TintSysClass
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
-            foreach (var enderecos in Enderecos)
-            {
-                enderecos.Inserir(id);
-            }
-            foreach(var telefones in Telefones)
-            {
-                telefones.Inserir(id);
-            }
+            //foreach (var enderecos in Enderecos)
+            //{
+            //    enderecos.Inserir(id);
+            //}
+            //foreach(var telefones in Telefones)
+            //{
+            //    telefones.Inserir(id);
+            //}
             Banco.Fechar(cmd);
         }
 
@@ -105,14 +104,14 @@ namespace TintSysClass
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public List<Clientes> Listar(string nome = "")
+        public static List<Clientes> Listar(string nome = "")
         {
             List<Clientes> list = null;
             var cmd = Banco.Abrir();
             cmd.CommandType= CommandType.Text;
-            if(nome!=string.Empty)
+            if(nome.Length > 0)
             {
-                cmd.CommandText = "select * from clientes where nome like '&"+ Nome +"&'";
+                cmd.CommandText = "select * from clientes where nome like '%"+ nome +"%'";
             }
             else
             {
@@ -163,10 +162,10 @@ namespace TintSysClass
         /// <summary>
         /// Método para alterar os campo nome e ativo do usuário por id.
         /// </summary>
-        public void Alterar(int id)
+        public void Alterar()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update from clientes set nome = @nome and ativo = @ativo where id = "+id;
+            cmd.CommandText = "update from clientes set nome = @nome and ativo = @ativo where id = "+ id;
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
             cmd.Parameters.Add("@ativo", MySqlDbType.Bit).Value = Ativo;
             cmd.ExecuteNonQuery();

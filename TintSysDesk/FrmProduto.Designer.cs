@@ -42,10 +42,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridViewProduto = new System.Windows.Forms.DataGridView();
-            this.btnInserirProduto = new System.Windows.Forms.Button();
-            this.btnListarProduto = new System.Windows.Forms.Button();
-            this.btnEditarProduto = new System.Windows.Forms.Button();
-            this.btnArquivarProduto = new System.Windows.Forms.Button();
             this.ClnIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDescricaoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnUnidadeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,25 +49,45 @@
             this.clnPrecoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDescontoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnInativoProduto = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnInserirProduto = new System.Windows.Forms.Button();
+            this.btnListarProduto = new System.Windows.Forms.Button();
+            this.btnEditarProduto = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Arquivados = new System.Windows.Forms.Label();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIdProduto
             // 
             this.txtIdProduto.Location = new System.Drawing.Point(51, 34);
             this.txtIdProduto.Name = "txtIdProduto";
+            this.txtIdProduto.ReadOnly = true;
             this.txtIdProduto.Size = new System.Drawing.Size(64, 20);
             this.txtIdProduto.TabIndex = 0;
+            this.txtIdProduto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxDescontinuado
             // 
             this.checkBoxDescontinuado.AutoSize = true;
             this.checkBoxDescontinuado.Location = new System.Drawing.Point(190, 37);
             this.checkBoxDescontinuado.Name = "checkBoxDescontinuado";
-            this.checkBoxDescontinuado.Size = new System.Drawing.Size(98, 17);
+            this.checkBoxDescontinuado.Size = new System.Drawing.Size(74, 17);
             this.checkBoxDescontinuado.TabIndex = 1;
-            this.checkBoxDescontinuado.Text = "Descontinuado";
+            this.checkBoxDescontinuado.Text = "Arquivado";
             this.checkBoxDescontinuado.UseVisualStyleBackColor = true;
+            this.checkBoxDescontinuado.CheckedChanged += new System.EventHandler(this.checkBoxDescontinuado_CheckedChanged);
             // 
             // txtDescricaoProduto
             // 
@@ -188,49 +204,14 @@
             this.clnPrecoProduto,
             this.clnDescontoProduto,
             this.clnInativoProduto});
-            this.dataGridViewProduto.Location = new System.Drawing.Point(28, 250);
+            this.dataGridViewProduto.Location = new System.Drawing.Point(14, 259);
             this.dataGridViewProduto.Name = "dataGridViewProduto";
             this.dataGridViewProduto.ReadOnly = true;
             this.dataGridViewProduto.RowHeadersVisible = false;
+            this.dataGridViewProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProduto.Size = new System.Drawing.Size(699, 150);
             this.dataGridViewProduto.TabIndex = 4;
-            // 
-            // btnInserirProduto
-            // 
-            this.btnInserirProduto.Location = new System.Drawing.Point(28, 182);
-            this.btnInserirProduto.Name = "btnInserirProduto";
-            this.btnInserirProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnInserirProduto.TabIndex = 5;
-            this.btnInserirProduto.Text = "&Inserir";
-            this.btnInserirProduto.UseVisualStyleBackColor = true;
-            this.btnInserirProduto.Click += new System.EventHandler(this.btnInserirProduto_Click);
-            // 
-            // btnListarProduto
-            // 
-            this.btnListarProduto.Location = new System.Drawing.Point(144, 182);
-            this.btnListarProduto.Name = "btnListarProduto";
-            this.btnListarProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnListarProduto.TabIndex = 5;
-            this.btnListarProduto.Text = "Listar";
-            this.btnListarProduto.UseVisualStyleBackColor = true;
-            // 
-            // btnEditarProduto
-            // 
-            this.btnEditarProduto.Location = new System.Drawing.Point(258, 182);
-            this.btnEditarProduto.Name = "btnEditarProduto";
-            this.btnEditarProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnEditarProduto.TabIndex = 5;
-            this.btnEditarProduto.Text = "Editar";
-            this.btnEditarProduto.UseVisualStyleBackColor = true;
-            // 
-            // btnArquivarProduto
-            // 
-            this.btnArquivarProduto.Location = new System.Drawing.Point(374, 182);
-            this.btnArquivarProduto.Name = "btnArquivarProduto";
-            this.btnArquivarProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnArquivarProduto.TabIndex = 5;
-            this.btnArquivarProduto.Text = "Arquivar";
-            this.btnArquivarProduto.UseVisualStyleBackColor = true;
+            this.dataGridViewProduto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProduto_CellDoubleClick);
             // 
             // ClnIdProduto
             // 
@@ -291,15 +272,167 @@
             this.clnInativoProduto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clnInativoProduto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // btnInserirProduto
+            // 
+            this.btnInserirProduto.Location = new System.Drawing.Point(89, 182);
+            this.btnInserirProduto.Name = "btnInserirProduto";
+            this.btnInserirProduto.Size = new System.Drawing.Size(75, 23);
+            this.btnInserirProduto.TabIndex = 5;
+            this.btnInserirProduto.Text = "&Inserir";
+            this.btnInserirProduto.UseVisualStyleBackColor = true;
+            this.btnInserirProduto.Click += new System.EventHandler(this.btnInserirProduto_Click);
+            // 
+            // btnListarProduto
+            // 
+            this.btnListarProduto.Location = new System.Drawing.Point(205, 182);
+            this.btnListarProduto.Name = "btnListarProduto";
+            this.btnListarProduto.Size = new System.Drawing.Size(75, 23);
+            this.btnListarProduto.TabIndex = 5;
+            this.btnListarProduto.Text = "Listar";
+            this.btnListarProduto.UseVisualStyleBackColor = true;
+            this.btnListarProduto.Click += new System.EventHandler(this.btnListarProduto_Click);
+            // 
+            // btnEditarProduto
+            // 
+            this.btnEditarProduto.Enabled = false;
+            this.btnEditarProduto.Location = new System.Drawing.Point(319, 182);
+            this.btnEditarProduto.Name = "btnEditarProduto";
+            this.btnEditarProduto.Size = new System.Drawing.Size(75, 23);
+            this.btnEditarProduto.TabIndex = 5;
+            this.btnEditarProduto.Text = "Editar";
+            this.btnEditarProduto.UseVisualStyleBackColor = true;
+            this.btnEditarProduto.Click += new System.EventHandler(this.btnEditarProduto_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(121, 33);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(45, 23);
+            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.Text = "...";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewCheckBoxColumn1});
+            this.dataGridView1.Location = new System.Drawing.Point(14, 447);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(699, 150);
+            this.dataGridView1.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Descrição";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 159;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.Frozen = true;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Unidade";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.Frozen = true;
+            this.dataGridViewTextBoxColumn4.HeaderText = "CodBar";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Preço";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Desconto";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.Frozen = true;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Inativo";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Arquivados
+            // 
+            this.Arquivados.AutoSize = true;
+            this.Arquivados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Arquivados.Location = new System.Drawing.Point(17, 424);
+            this.Arquivados.Name = "Arquivados";
+            this.Arquivados.Size = new System.Drawing.Size(98, 20);
+            this.Arquivados.TabIndex = 7;
+            this.Arquivados.Text = "Arquivados";
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(31, 222);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(437, 20);
+            this.txtPesquisar.TabIndex = 8;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TintSysDesk.Properties.Resources.Search1;
+            this.pictureBox1.Location = new System.Drawing.Point(474, 222);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 19);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnArquivarProduto);
+            this.ClientSize = new System.Drawing.Size(800, 606);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txtPesquisar);
+            this.Controls.Add(this.Arquivados);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnEditarProduto);
             this.Controls.Add(this.btnListarProduto);
             this.Controls.Add(this.btnInserirProduto);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridViewProduto);
             this.Controls.Add(this.cbxUnidadeProduto);
             this.Controls.Add(this.label3);
@@ -318,6 +451,8 @@
             this.Text = "FrmProduto";
             this.Load += new System.EventHandler(this.FrmProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +477,6 @@
         private System.Windows.Forms.Button btnInserirProduto;
         private System.Windows.Forms.Button btnListarProduto;
         private System.Windows.Forms.Button btnEditarProduto;
-        private System.Windows.Forms.Button btnArquivarProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClnIdProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDescricaoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnUnidadeProduto;
@@ -350,5 +484,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnPrecoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDescontoProduto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clnInativoProduto;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.Label Arquivados;
+        private System.Windows.Forms.TextBox txtPesquisar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -324,6 +324,7 @@
             this.btnConsultarNível.Text = "Consultar";
             this.btnConsultarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarNível.UseVisualStyleBackColor = true;
+            this.btnConsultarNível.Click += new System.EventHandler(this.btnConsultarNível_Click);
             // 
             // btnInserirNível
             // 

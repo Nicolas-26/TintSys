@@ -59,5 +59,10 @@ namespace TintSysDesk
                 linha++;
             }
         }
+
+        private void btnConsultarNível_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -73,7 +73,18 @@ namespace TintSysClass
                     dr.GetString(2)
                     ));
             }
+            Banco.Fechar(cmd);
             return telefones;
+        }
+
+        public void Atualizar(int id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update telefone set numero = @numero and tipo = @tipo where id = " + id;
+            cmd.Parameters.Add("@numero",MySqlDbType.VarChar).Value = Numero;
+            cmd.Parameters.Add("@tipo",MySqlDbType.VarChar).Value = Tipo;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
         }
       
     }
