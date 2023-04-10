@@ -120,7 +120,7 @@ namespace TintSysClass
             cmd.Parameters.AddWithValue("@logardouro", Logradouro);
             cmd.Parameters.AddWithValue("@bairro", Bairro);
             cmd.Parameters.AddWithValue("@cidade", Cidade);
-            cmd.Parameters.AddWithValue("@estado", Estado);
+            cmd.Parameters.AddWithValue("@estado", Estado); 
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);  
         }

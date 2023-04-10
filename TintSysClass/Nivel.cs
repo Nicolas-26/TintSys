@@ -16,14 +16,19 @@ namespace TintSysClass
     public class Nivel
     {
         //atributos (private(-) == public(+) == protected(#))
-        private static int id;
-        private static string nome;
-        private static string sigla;
+        //private static int id;
+        //private static string nome;
+        //private static string sigla;
 
         //propriedades
-        public static int Id { get { return id; } set { id = value; } }
-        public static string Nome { get { return nome; } set { nome = value; } }
-        public static string Sigla { get { return sigla; } set { sigla = value; } }
+        //public static int Id { get { return id; } set { id = value; } }
+        //public static string Nome { get { return nome; } set { nome = value; } }
+        //public static string Sigla { get { return sigla; } set { sigla = value; } }
+
+        public static int Id { get; set; }
+        public static string Nome { get; set; }
+        public static string Sigla { get; set; }
+
 
         //métodos construtores
         public Nivel() { }
@@ -43,7 +48,7 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir um nome e uma sigla na tabela Niveis do banco de dados   
         /// </summary>
-        public static void Inserir()
+        public void Inserir()
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert niveis (nome, sigla) values (@nome, @sigla)";

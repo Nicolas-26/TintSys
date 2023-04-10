@@ -31,7 +31,6 @@
             this.tbcCliente = new System.Windows.Forms.TabControl();
             this.tpgDadosPessoais = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.txtCpfCliente = new System.Windows.Forms.TextBox();
             this.txtEmailCliente = new System.Windows.Forms.TextBox();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@
             this.btnConsultarCliente = new System.Windows.Forms.Button();
             this.tpgEnderecos = new System.Windows.Forms.TabPage();
             this.tpgTelefones = new System.Windows.Forms.TabPage();
+            this.mstCpf = new System.Windows.Forms.MaskedTextBox();
             this.tbcCliente.SuspendLayout();
             this.tpgDadosPessoais.SuspendLayout();
             this.SuspendLayout();
@@ -61,8 +61,8 @@
             // 
             // tpgDadosPessoais
             // 
+            this.tpgDadosPessoais.Controls.Add(this.mstCpf);
             this.tpgDadosPessoais.Controls.Add(this.checkBox1);
-            this.tpgDadosPessoais.Controls.Add(this.txtCpfCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtEmailCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtNomeCliente);
             this.tpgDadosPessoais.Controls.Add(this.txtIdCliente);
@@ -80,6 +80,7 @@
             this.tpgDadosPessoais.TabIndex = 0;
             this.tpgDadosPessoais.Text = "Dados Pessoais";
             this.tpgDadosPessoais.UseVisualStyleBackColor = true;
+            this.tpgDadosPessoais.Click += new System.EventHandler(this.tpgDadosPessoais_Click);
             // 
             // checkBox1
             // 
@@ -91,17 +92,9 @@
             this.checkBox1.Text = "Ativo";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // txtCpfCliente
-            // 
-            this.txtCpfCliente.Location = new System.Drawing.Point(56, 140);
-            this.txtCpfCliente.Name = "txtCpfCliente";
-            this.txtCpfCliente.Size = new System.Drawing.Size(72, 20);
-            this.txtCpfCliente.TabIndex = 14;
-            this.txtCpfCliente.UseSystemPasswordChar = true;
-            // 
             // txtEmailCliente
             // 
-            this.txtEmailCliente.Location = new System.Drawing.Point(56, 103);
+            this.txtEmailCliente.Location = new System.Drawing.Point(56, 162);
             this.txtEmailCliente.Name = "txtEmailCliente";
             this.txtEmailCliente.Size = new System.Drawing.Size(223, 20);
             this.txtEmailCliente.TabIndex = 15;
@@ -132,7 +125,7 @@
             // labelCpf
             // 
             this.labelCpf.AutoSize = true;
-            this.labelCpf.Location = new System.Drawing.Point(12, 140);
+            this.labelCpf.Location = new System.Drawing.Point(18, 121);
             this.labelCpf.Name = "labelCpf";
             this.labelCpf.Size = new System.Drawing.Size(27, 13);
             this.labelCpf.TabIndex = 11;
@@ -141,7 +134,7 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(18, 103);
+            this.labelEmail.Location = new System.Drawing.Point(18, 165);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(32, 13);
             this.labelEmail.TabIndex = 12;
@@ -195,6 +188,7 @@
             this.tpgEnderecos.TabIndex = 1;
             this.tpgEnderecos.Text = "Endereços";
             this.tpgEnderecos.UseVisualStyleBackColor = true;
+            this.tpgEnderecos.Click += new System.EventHandler(this.tpgEnderecos_Click);
             // 
             // tpgTelefones
             // 
@@ -205,6 +199,15 @@
             this.tpgTelefones.TabIndex = 2;
             this.tpgTelefones.Text = "Telefones";
             this.tpgTelefones.UseVisualStyleBackColor = true;
+            // 
+            // mstCpf
+            // 
+            this.mstCpf.Location = new System.Drawing.Point(56, 121);
+            this.mstCpf.Mask = "000.000.000-99";
+            this.mstCpf.Name = "mstCpf";
+            this.mstCpf.Size = new System.Drawing.Size(115, 20);
+            this.mstCpf.TabIndex = 20;
+            this.mstCpf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // FrmCliente
             // 
@@ -239,6 +242,6 @@
         private System.Windows.Forms.Button btnEditarCliente;
         private System.Windows.Forms.Button btnInserirCliente;
         private System.Windows.Forms.Button btnConsultarCliente;
-        private System.Windows.Forms.TextBox txtCpfCliente;
+        private System.Windows.Forms.MaskedTextBox mstCpf;
     }
 }

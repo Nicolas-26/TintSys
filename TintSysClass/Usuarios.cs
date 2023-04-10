@@ -36,6 +36,12 @@ namespace TintSysClass
             Senha = senha;
             Nivel = nivel;
         }
+        public Usuarios(string nome, string email, string senha)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+        }
         public Usuarios(string nome, string email, string senha, Nivel nivel, bool ativo)
         {
             Nome = nome;
@@ -97,7 +103,7 @@ namespace TintSysClass
             cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
             cmd.Parameters.Add("@nivel", MySqlDbType.Int32).Value = Nivel.Id;
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "select @@iddentity";
+            cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
         }
@@ -171,11 +177,11 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update from usuarios set nome = @nome, senha = md5(@senha),+" +
-                "nivel_id = @nivel where id = "+Id;
+            cmd.CommandText = "update usuarios set nome = @nome, email = @email, senha = md5(@senha), " +
+                "where id = " + id;
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
+            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = Email;
             cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
-            cmd.Parameters.Add("@nivel", MySqlDbType.Int32).Value = Nivel.Id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }

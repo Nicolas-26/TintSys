@@ -20,13 +20,14 @@ namespace TintSysDesk
 
         private void FrmCliente_Load(object sender, EventArgs e)
         {
-            
+            //Clientes cli = new Clientes();
+            //cli.Excluir(2); 
         }
 
         private void btnInserirCliente_Click(object sender, EventArgs e)
         {
             Clientes clientes = new Clientes(
-                txtNomeCliente.Text, txtEmailCliente.Text, txtCpfCliente.Text
+                txtNomeCliente.Text, mstCpf.Text, txtEmailCliente.Text
                 );
             clientes.Inserir();
             txtIdCliente.Text = clientes.Id.ToString();
@@ -36,16 +37,26 @@ namespace TintSysDesk
         {
             var cliente = Clientes.ObterPorId(Convert.ToInt32(txtIdCliente.Text));
             txtNomeCliente.Text = cliente.Nome;
+            mstCpf.Text = cliente.Cpf;
             txtEmailCliente.Text = cliente.Email;
-            txtCpfCliente.Text = cliente.Cpf;
         }
 
         private void btnEditarCliente_Click(object sender, EventArgs e)
         {
             Clientes c = new Clientes(
-                txtNomeCliente.Text
+                int.Parse(txtIdCliente.Text), txtNomeCliente.Text, mstCpf.Text, txtEmailCliente.Text
                 );
-            c.Alterar();
+            c.Alterar(8);
+        }
+
+        private void tpgDadosPessoais_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tpgEnderecos_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Certo");
         }
     }
 }

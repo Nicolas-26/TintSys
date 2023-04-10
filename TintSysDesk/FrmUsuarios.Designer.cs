@@ -76,6 +76,7 @@
             this.btnConsultar.TabIndex = 0;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnEditar
             // 
@@ -85,6 +86,7 @@
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnInserir
             // 
@@ -339,6 +341,7 @@
             this.btnInserirNível.Text = "Inserir";
             this.btnInserirNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnInserirNível.UseVisualStyleBackColor = true;
+            this.btnInserirNível.Click += new System.EventHandler(this.btnInserirNível_Click);
             // 
             // btnEditarNível
             // 
@@ -353,6 +356,7 @@
             this.btnEditarNível.Text = "Editar";
             this.btnEditarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEditarNível.UseVisualStyleBackColor = true;
+            this.btnEditarNível.Click += new System.EventHandler(this.btnEditarNível_Click);
             // 
             // dgvNíveis
             // 

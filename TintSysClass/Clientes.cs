@@ -66,9 +66,12 @@ namespace TintSysClass
             Ativo = ativo;
         }
 
-        public Clientes(string nome)
+        public Clientes(int id, string nome, string cpf, string email)
         {
+            Id = id;
             Nome = nome;
+            Cpf = cpf;
+            Email = email;
         }   
 
         //métodos de acesso
@@ -162,12 +165,14 @@ namespace TintSysClass
         /// <summary>
         /// Método para alterar os campo nome e ativo do usuário por id.
         /// </summary>
-        public void Alterar()
+        public void Alterar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update from clientes set nome = @nome and ativo = @ativo where id = "+ id;
+            cmd.CommandText = "update clientes set id = @id, nome = @nome, cpf = @cpf, email = @email where id = " + id;
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            cmd.Parameters.Add("@ativo", MySqlDbType.Bit).Value = Ativo;
+            cmd.Parameters.Add("@cpf", MySqlDbType.VarChar).Value = Cpf;
+            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = Email;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
@@ -203,7 +208,7 @@ namespace TintSysClass
         public void Excluir(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "delete from clientes where id = "+id;
+            cmd.CommandText = "delete from clientes where id = " + id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
