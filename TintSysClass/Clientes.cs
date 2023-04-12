@@ -145,7 +145,7 @@ namespace TintSysClass
         {
             Clientes cliente = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select * from clientes where id = "+id;
+            cmd.CommandText = "select * from clientes where id = " + id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {

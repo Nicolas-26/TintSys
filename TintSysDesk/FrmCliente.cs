@@ -56,7 +56,14 @@ namespace TintSysDesk
 
         private void tpgEnderecos_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Certo");
+            
         }
+
+        private void labelComplemento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

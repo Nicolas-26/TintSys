@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TintSysClass
 {
-    internal class Tipos
+    internal class Tipo
     {
     }
 }

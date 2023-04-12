@@ -130,7 +130,7 @@ namespace TintSysClass
         {
             Endereco enderecos = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select from enderecos where bairro = @bairro";
+            cmd.CommandText = "select * from enderecos where bairro = @bairro";
             cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = Bairro;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
@@ -147,7 +147,7 @@ namespace TintSysClass
         {
             Endereco enderecos = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select from enderecos set cep = @cep and logradouro = @logradouro";
+            cmd.CommandText = "select * from enderecos set cep = @cep and logradouro = @logradouro";
             cmd.Parameters.Add("@cep", MySqlDbType.VarChar).Value = Cep;
             cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = Logradouro;
             var dr = cmd.ExecuteReader();

@@ -16,5 +16,10 @@ namespace TintSysDesk
         {
             InitializeComponent();
         }
+
+        private void textBoxCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
