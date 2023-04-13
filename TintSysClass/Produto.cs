@@ -56,12 +56,12 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert produtos (descricao, unidade, codbar, preco, desconto, descontinuado)"+
-                "values (@descricao, @unidade, @codbar, @preco, @desconto/100, 0)";
+                "values (@descricao, @unidade, @codbar, @preco, @desconto, 0)";
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
             cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
             cmd.Parameters.Add("@preco", MySqlDbType.Double).Value = Preco;
-            cmd.Parameters.Add("@desconto", MySqlDbType.Double).Value = Desconto;
+            cmd.Parameters.Add("@desconto", MySqlDbType.Double).Value = Desconto/100;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());

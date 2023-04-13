@@ -14,13 +14,13 @@ namespace TintSysClass
         private int id;
         private string numero;
         private string tipo;
-        private Clientes clientes;
+        private Cliente clientes;
 
         //propriedades
         public int Id { get { return id; } set {  id = value; } }
         public string Numero { get { return numero; } set {  numero = value; } }
         public string Tipo { get {  return tipo; } set {  tipo = value; } }
-        public Clientes Clientes { get { return clientes; } set { clientes = value; } } 
+        public Cliente Clientes { get { return clientes; } set { clientes = value; } } 
 
         //métodos construtores
         public Telefone() { }
@@ -30,7 +30,7 @@ namespace TintSysClass
             this.numero = Numero;
             this.tipo = Tipo;
         }
-        public Telefone(int id, string numero, string tipo, Clientes clientes)
+        public Telefone(int id, string numero, string tipo, Cliente clientes)
         {
             this.id = Id;
             this.numero = Numero;

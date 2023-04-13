@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace TintSysClass
 {
-    public class Clientes
+    public class Cliente
     {
         //atributos
         private int id;
@@ -30,14 +30,14 @@ namespace TintSysClass
         public List<Endereco> Enderecos { get; set; }
 
         //métodos construtores
-        public Clientes() { }
-        public Clientes(string nome, string cpf, string email)
+        public Cliente() { }
+        public Cliente(string nome, string cpf, string email)
         {
             Nome = nome;
             Cpf = cpf;
             Email = email;
         }
-        public Clientes(string nome, string cpf, string email, DateTime data, bool ativo, List<Telefone> telefones, List<Endereco> enderecos)
+        public Cliente(string nome, string cpf, string email, DateTime data, bool ativo, List<Telefone> telefones, List<Endereco> enderecos)
         {
             Nome = nome;
             Cpf = cpf;
@@ -47,7 +47,7 @@ namespace TintSysClass
             Telefones = telefones;
             Enderecos = enderecos;
         }
-        public Clientes(string nome, string cpf, string email, DateTime data, List<Telefone> telefones, List<Endereco> enderecos)
+        public Cliente(string nome, string cpf, string email, DateTime data, List<Telefone> telefones, List<Endereco> enderecos)
         {
             Nome = nome;
             Cpf = cpf;
@@ -56,7 +56,7 @@ namespace TintSysClass
             Telefones = telefones;
             Enderecos = enderecos;
         }
-        public Clientes(int id, string nome, string cpf, string email, DateTime data, bool ativo)
+        public Cliente(int id, string nome, string cpf, string email, DateTime data, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -66,7 +66,7 @@ namespace TintSysClass
             Ativo = ativo;
         }
 
-        public Clientes(int id, string nome, string cpf, string email)
+        public Cliente(int id, string nome, string cpf, string email)
         {
             Id = id;
             Nome = nome;
@@ -107,9 +107,9 @@ namespace TintSysClass
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public static List<Clientes> Listar(string nome = "")
+        public static List<Cliente> Listar(string nome = "")
         {
-            List<Clientes> list = null;
+            List<Cliente> list = new List<Cliente>();
             var cmd = Banco.Abrir();
             cmd.CommandType= CommandType.Text;
             if(nome.Length > 0)
@@ -118,12 +118,12 @@ namespace TintSysClass
             }
             else
             {
-                cmd.CommandText = "select * from clientes order by nome asc";
+                cmd.CommandText = "select * from clientes order by id";
             }
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                list.Add(new Clientes(
+                list.Add(new Cliente(
                     dr.GetInt32(0),
                     dr.GetString(1),
                     dr.GetString(2),
@@ -141,15 +141,15 @@ namespace TintSysClass
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Clientes ObterPorId(int id)
+        public static Cliente ObterPorId(int id)
         {
-            Clientes cliente = null;
+            Cliente cliente = null;
             var cmd = Banco.Abrir();
             cmd.CommandText = "select * from clientes where id = " + id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                cliente = new Clientes(
+                cliente = new Cliente(
                     dr.GetInt32(0),
                     dr.GetString(1),
                     dr.GetString(2),

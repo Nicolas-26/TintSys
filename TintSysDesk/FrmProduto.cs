@@ -58,8 +58,8 @@ namespace TintSysDesk
                 dataGridViewProduto.Rows[c].Cells[1].Value = item.Descricao;
                 dataGridViewProduto.Rows[c].Cells[2].Value = item.Unidade;
                 dataGridViewProduto.Rows[c].Cells[3].Value = item.CodBar;
-                dataGridViewProduto.Rows[c].Cells[4].Value = item.Preco.ToString("R$ ##0.00");
-                dataGridViewProduto.Rows[c].Cells[5].Value = item.Desconto.ToString("#.##%");
+                dataGridViewProduto.Rows[c].Cells[4].Value = item.Preco.ToString();
+                dataGridViewProduto.Rows[c].Cells[5].Value = item.Desconto.ToString();
                 dataGridViewProduto.Rows[c].Cells[6].Value = item.Descontinuado;
                 c++;
             }

@@ -33,7 +33,7 @@ namespace TintSysClass
         public string Estado { get { return estado; } set {  estado = value; } }
         public string UF { get { return uf; } set { uf = value; } }
         public string Tipo { get { return tipo; } set {  tipo = value; } }
-        public Clientes Clientes { get; set; }
+        public Cliente Clientes { get; set; }
 
         //métodos construtores
         public Endereco() { }
@@ -59,7 +59,7 @@ namespace TintSysClass
             UF = uf;
             Tipo = tipo;
         }
-        public Endereco(string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Clientes clientes)
+        public Endereco(string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string uf, string tipo, Cliente clientes)
         {
             Cep = cep;
             Logradouro = logradouro;
@@ -72,6 +72,27 @@ namespace TintSysClass
             Tipo = tipo;
             Clientes = clientes;
         }
+        public Endereco(string cep, string logradouro, string bairro, string cidade, string estado, string uf, string tipo, Cliente clientes)
+        {
+            Cep = cep;
+            Logradouro = logradouro;
+            Bairro = bairro;
+            Cidade = cidade;
+            Estado = estado;
+            UF = uf;
+            Tipo = tipo;
+            Clientes = clientes;
+        }
+        public Endereco(string cep, string logradouro, string bairro, string cidade, string estado, string uf, string tipo)
+        {
+            Cep = cep;
+            Logradouro = logradouro;
+            Bairro = bairro;
+            Cidade = cidade;
+            Estado = estado;
+            UF = uf;
+            Tipo = tipo;
+        }
 
         //métodos de acesso
 
@@ -82,7 +103,7 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert enderecos (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo)" +
-                "values ("+cliente_id+",'"+Cep+"','"+Logradouro+"','"+Numero+"','"+Complemento+"','"+Bairro+"','"+Cidade+"','"+Estado+"','"+UF+"','"+Tipo+"')";
+                "values ("+cliente_id+",'"+Cep+"','"+Logradouro+"', default, default,'"+Bairro+"','"+Cidade+"','"+Estado+"','"+UF+"','"+Tipo+"')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());

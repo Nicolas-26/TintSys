@@ -14,14 +14,15 @@ namespace TintSysClass
         public DateTime Data { get; set; }
         public string Status { get; set; }
         public double Desconto { get; set; }
-        public Clientes Cliente { get; set; }
+        public Cliente Cliente { get; set; }
         public Usuarios Usuario { get; set; }
         public DateTime ArquivadoEm { get; set; }
         public string HashCode { get; set; }
+        //public ItemPedido itens { get; set; }
 
         //Métodos contrutores
         public Pedido() { }
-        public Pedido(int id, DateTime data, string status, double desconto, Clientes clientes, Usuarios usuarios, DateTime arquivado_em, string hashCode)
+        public Pedido(int id, DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, DateTime arquivado_em, string hashCode)
         {
             Id = id;    
             Data = data;
@@ -32,7 +33,19 @@ namespace TintSysClass
             ArquivadoEm = arquivado_em;
             HashCode = hashCode;
         }
-        public Pedido(DateTime data, string status, double desconto, Clientes clientes, Usuarios usuarios, DateTime arquivadoem, string hashCode)
+        //public Pedido(int id, DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, DateTime arquivado_em, string hashCode)
+        //{
+        //    Id = id;
+        //    Data = data;
+        //    Status = status;
+        //    Desconto = desconto;
+        //    Cliente = clientes;
+        //    Usuario = usuarios;
+        //    ArquivadoEm = arquivado_em;
+        //    HashCode = hashCode;
+            
+        //}
+        public Pedido(DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, DateTime arquivadoem, string hashCode)
         {
             Data = data;
             Status = status;
@@ -50,7 +63,7 @@ namespace TintSysClass
             ArquivadoEm = arquivadoem;
             HashCode = hashCode;
         }
-        public Pedido(Clientes cliente, Usuarios usuario)
+        public Pedido(Cliente cliente, Usuarios usuario)
         {
             Cliente = cliente;
             Usuario = usuario;
@@ -64,7 +77,7 @@ namespace TintSysClass
                 " values (default, default, 0, @cliente, @usuario, @hashcode)";
             cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = Cliente.Id;
             cmd.Parameters.Add("@usuario",MySqlDbType.Int32).Value = Usuario.Id;
-            cmd.Parameters.Add("@hashcode", MySqlDbType.VarChar).Value = ObterHashCode(Cliente.Id, Usuario.Id);
+            //cmd.Parameters.Add("@hashcode", MySqlDbType.VarChar).Value = ObterHashCode(Cliente.Id, Usuario.Id);
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -84,7 +97,7 @@ namespace TintSysClass
                     dr.GetDateTime(1),
                     dr.GetString(2),
                     dr.GetDouble(3),
-                    Clientes.ObterPorId(dr.GetInt32(4)),
+                    Cliente.ObterPorId(dr.GetInt32(4)),
                     Usuarios.ObterPorId(dr.GetInt32(5)),
                     dr.GetDateTime(6),
                     dr.GetString(7)
@@ -106,7 +119,7 @@ namespace TintSysClass
                     dr.GetDateTime(1),
                     dr.GetString(2),
                     dr.GetDouble(3),
-                    Clientes.ObterPorId(dr.GetInt32(4)),
+                    Cliente.ObterPorId(dr.GetInt32(4)),
                     Usuarios.ObterPorId(dr.GetInt32(5)),
                     dr.GetDateTime(6),
                     dr.GetString(7)
@@ -115,14 +128,11 @@ namespace TintSysClass
             Banco.Fechar(cmd);
             return list;
         }
-        public static List<Pedido> Listar(string hashcode = "")
+        public static List<Pedido> Listar()
         {
             List<Pedido> lista = null;
             var cmd = Banco.Abrir();
-            if (hashcode.Length > 0)
-                cmd.CommandText = "select * from pedido where hashcode like '%" + hashcode + "'";
-            else
-                cmd.CommandText = "select * from pedido";
+            cmd.CommandText = "select * from pedidos";
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
@@ -131,7 +141,7 @@ namespace TintSysClass
                     dr.GetDateTime(1),
                     dr.GetString(2),
                     dr.GetDouble(3),
-                    Clientes.ObterPorId(dr.GetInt32(4)),
+                    Cliente.ObterPorId(dr.GetInt32(4)),
                     Usuarios.ObterPorId(dr.GetInt32(5)),
                     dr.GetDateTime(6),
                     dr.GetString(7)
@@ -140,21 +150,48 @@ namespace TintSysClass
             Banco.Fechar(cmd);
             return lista;
         }
-        public void Atualizar()
+        public void Atualizar(int usuario_id)
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update pedidos set desconto = @desconto"+
+                " where id = " + Id;
+            cmd.Parameters.Add("@desconto", MySqlDbType.Double).Value = Desconto;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
+        }
+        public static bool Fechar(int id)
+        {
+            bool teste = false;
+            MySqlCommand cmd = null;
+            try
+            {
+                cmd = Banco.Abrir();
+                cmd.CommandText = "update pedidos set status = 'F' where id = " + id;
+                if(cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch
+            {
+                // mostrar erro
+            }
+            finally
+            {
+                Banco.Fechar(cmd);
+            }
+            return teste;
         }
         public void Arquivar()
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update ";
         }
         public void Restaurar()
         {
 
         }
-        private string ObterHashCode()
-        {
-            return "";
-        }
+        //private string ObterHashCode()
+        //{
+        //    return "";
+        //}
     }
 }

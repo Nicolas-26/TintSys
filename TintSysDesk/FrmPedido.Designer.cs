@@ -32,25 +32,25 @@
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.btnNovo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelCliente = new System.Windows.Forms.Label();
+            this.btnInserir = new System.Windows.Forms.Button();
+            this.comboBoxAtendente = new System.Windows.Forms.ComboBox();
             this.comboBoxCliente = new System.Windows.Forms.ComboBox();
             this.labelAtendente = new System.Windows.Forms.Label();
-            this.comboBoxAtendente = new System.Windows.Forms.ComboBox();
-            this.btnInserir = new System.Windows.Forms.Button();
+            this.labelCliente = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labelCodigo = new System.Windows.Forms.Label();
-            this.textBoxCodigo = new System.Windows.Forms.TextBox();
-            this.labelDescricao = new System.Windows.Forms.Label();
-            this.textBoxDescricao = new System.Windows.Forms.TextBox();
-            this.labelUnidade = new System.Windows.Forms.Label();
-            this.comboBoxUnidade = new System.Windows.Forms.ComboBox();
-            this.labelPreco = new System.Windows.Forms.Label();
-            this.textBoxPreco = new System.Windows.Forms.TextBox();
-            this.labelQuantidade = new System.Windows.Forms.Label();
-            this.textBoxQuantidade = new System.Windows.Forms.TextBox();
-            this.labelDesconto = new System.Windows.Forms.Label();
-            this.textBoxDesconto = new System.Windows.Forms.TextBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.textBoxDescricao = new System.Windows.Forms.TextBox();
+            this.comboBoxUnidade = new System.Windows.Forms.ComboBox();
+            this.textBoxDesconto = new System.Windows.Forms.TextBox();
+            this.textBoxQuantidade = new System.Windows.Forms.TextBox();
+            this.textBoxPreco = new System.Windows.Forms.TextBox();
+            this.textBoxCodigo = new System.Windows.Forms.TextBox();
+            this.labelDesconto = new System.Windows.Forms.Label();
+            this.labelQuantidade = new System.Windows.Forms.Label();
+            this.labelPreco = new System.Windows.Forms.Label();
+            this.labelUnidade = new System.Windows.Forms.Label();
+            this.labelDescricao = new System.Windows.Forms.Label();
+            this.labelCodigo = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clnHashTag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnCod = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +92,7 @@
             this.btnNovo.TabIndex = 2;
             this.btnNovo.Text = "+Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // groupBox1
             // 
@@ -100,6 +101,7 @@
             this.groupBox1.Controls.Add(this.comboBoxCliente);
             this.groupBox1.Controls.Add(this.labelAtendente);
             this.groupBox1.Controls.Add(this.labelCliente);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(43, 162);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(697, 92);
@@ -107,14 +109,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados";
             // 
-            // labelCliente
+            // btnInserir
             // 
-            this.labelCliente.AutoSize = true;
-            this.labelCliente.Location = new System.Drawing.Point(9, 41);
-            this.labelCliente.Name = "labelCliente";
-            this.labelCliente.Size = new System.Drawing.Size(42, 13);
-            this.labelCliente.TabIndex = 0;
-            this.labelCliente.Text = " Cliente";
+            this.btnInserir.Location = new System.Drawing.Point(568, 43);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(75, 23);
+            this.btnInserir.TabIndex = 2;
+            this.btnInserir.Text = "Inserir";
+            this.btnInserir.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxAtendente
+            // 
+            this.comboBoxAtendente.FormattingEnabled = true;
+            this.comboBoxAtendente.Location = new System.Drawing.Point(392, 43);
+            this.comboBoxAtendente.Name = "comboBoxAtendente";
+            this.comboBoxAtendente.Size = new System.Drawing.Size(91, 21);
+            this.comboBoxAtendente.TabIndex = 1;
             // 
             // comboBoxCliente
             // 
@@ -133,22 +143,14 @@
             this.labelAtendente.TabIndex = 0;
             this.labelAtendente.Text = "Atendente";
             // 
-            // comboBoxAtendente
+            // labelCliente
             // 
-            this.comboBoxAtendente.FormattingEnabled = true;
-            this.comboBoxAtendente.Location = new System.Drawing.Point(392, 43);
-            this.comboBoxAtendente.Name = "comboBoxAtendente";
-            this.comboBoxAtendente.Size = new System.Drawing.Size(91, 21);
-            this.comboBoxAtendente.TabIndex = 1;
-            // 
-            // btnInserir
-            // 
-            this.btnInserir.Location = new System.Drawing.Point(568, 43);
-            this.btnInserir.Name = "btnInserir";
-            this.btnInserir.Size = new System.Drawing.Size(75, 23);
-            this.btnInserir.TabIndex = 2;
-            this.btnInserir.Text = "Inserir";
-            this.btnInserir.UseVisualStyleBackColor = true;
+            this.labelCliente.AutoSize = true;
+            this.labelCliente.Location = new System.Drawing.Point(9, 41);
+            this.labelCliente.Name = "labelCliente";
+            this.labelCliente.Size = new System.Drawing.Size(42, 13);
+            this.labelCliente.TabIndex = 0;
+            this.labelCliente.Text = " Cliente";
             // 
             // groupBox2
             // 
@@ -165,6 +167,7 @@
             this.groupBox2.Controls.Add(this.labelUnidade);
             this.groupBox2.Controls.Add(this.labelDescricao);
             this.groupBox2.Controls.Add(this.labelCodigo);
+            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(43, 294);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(697, 106);
@@ -172,31 +175,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Produtos";
             // 
-            // labelCodigo
+            // btnAdicionar
             // 
-            this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Location = new System.Drawing.Point(9, 42);
-            this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(43, 13);
-            this.labelCodigo.TabIndex = 0;
-            this.labelCodigo.Text = " Código";
-            // 
-            // textBoxCodigo
-            // 
-            this.textBoxCodigo.Location = new System.Drawing.Point(12, 58);
-            this.textBoxCodigo.Name = "textBoxCodigo";
-            this.textBoxCodigo.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCodigo.TabIndex = 1;
-            this.textBoxCodigo.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
-            // 
-            // labelDescricao
-            // 
-            this.labelDescricao.AutoSize = true;
-            this.labelDescricao.Location = new System.Drawing.Point(127, 43);
-            this.labelDescricao.Name = "labelDescricao";
-            this.labelDescricao.Size = new System.Drawing.Size(55, 13);
-            this.labelDescricao.TabIndex = 0;
-            this.labelDescricao.Text = "Descrição";
+            this.btnAdicionar.Location = new System.Drawing.Point(598, 53);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(75, 25);
+            this.btnAdicionar.TabIndex = 2;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
             // 
             // textBoxDescricao
             // 
@@ -204,15 +190,6 @@
             this.textBoxDescricao.Name = "textBoxDescricao";
             this.textBoxDescricao.Size = new System.Drawing.Size(154, 20);
             this.textBoxDescricao.TabIndex = 1;
-            // 
-            // labelUnidade
-            // 
-            this.labelUnidade.AutoSize = true;
-            this.labelUnidade.Location = new System.Drawing.Point(300, 42);
-            this.labelUnidade.Name = "labelUnidade";
-            this.labelUnidade.Size = new System.Drawing.Size(27, 13);
-            this.labelUnidade.TabIndex = 0;
-            this.labelUnidade.Text = "Und";
             // 
             // comboBoxUnidade
             // 
@@ -223,14 +200,21 @@
             this.comboBoxUnidade.Size = new System.Drawing.Size(69, 21);
             this.comboBoxUnidade.TabIndex = 1;
             // 
-            // labelPreco
+            // textBoxDesconto
             // 
-            this.labelPreco.AutoSize = true;
-            this.labelPreco.Location = new System.Drawing.Point(389, 42);
-            this.labelPreco.Name = "labelPreco";
-            this.labelPreco.Size = new System.Drawing.Size(35, 13);
-            this.labelPreco.TabIndex = 0;
-            this.labelPreco.Text = "Preço";
+            this.textBoxDesconto.Location = new System.Drawing.Point(520, 58);
+            this.textBoxDesconto.Name = "textBoxDesconto";
+            this.textBoxDesconto.Size = new System.Drawing.Size(40, 20);
+            this.textBoxDesconto.TabIndex = 1;
+            this.textBoxDesconto.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
+            // 
+            // textBoxQuantidade
+            // 
+            this.textBoxQuantidade.Location = new System.Drawing.Point(465, 58);
+            this.textBoxQuantidade.Name = "textBoxQuantidade";
+            this.textBoxQuantidade.Size = new System.Drawing.Size(40, 20);
+            this.textBoxQuantidade.TabIndex = 1;
+            this.textBoxQuantidade.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
             // 
             // textBoxPreco
             // 
@@ -240,22 +224,13 @@
             this.textBoxPreco.TabIndex = 1;
             this.textBoxPreco.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
             // 
-            // labelQuantidade
+            // textBoxCodigo
             // 
-            this.labelQuantidade.AutoSize = true;
-            this.labelQuantidade.Location = new System.Drawing.Point(462, 41);
-            this.labelQuantidade.Name = "labelQuantidade";
-            this.labelQuantidade.Size = new System.Drawing.Size(24, 13);
-            this.labelQuantidade.TabIndex = 0;
-            this.labelQuantidade.Text = "Qtd";
-            // 
-            // textBoxQuantidade
-            // 
-            this.textBoxQuantidade.Location = new System.Drawing.Point(465, 58);
-            this.textBoxQuantidade.Name = "textBoxQuantidade";
-            this.textBoxQuantidade.Size = new System.Drawing.Size(40, 20);
-            this.textBoxQuantidade.TabIndex = 1;
-            this.textBoxQuantidade.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
+            this.textBoxCodigo.Location = new System.Drawing.Point(12, 58);
+            this.textBoxCodigo.Name = "textBoxCodigo";
+            this.textBoxCodigo.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCodigo.TabIndex = 1;
+            this.textBoxCodigo.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
             // 
             // labelDesconto
             // 
@@ -266,22 +241,50 @@
             this.labelDesconto.TabIndex = 0;
             this.labelDesconto.Text = "Desconto";
             // 
-            // textBoxDesconto
+            // labelQuantidade
             // 
-            this.textBoxDesconto.Location = new System.Drawing.Point(520, 58);
-            this.textBoxDesconto.Name = "textBoxDesconto";
-            this.textBoxDesconto.Size = new System.Drawing.Size(40, 20);
-            this.textBoxDesconto.TabIndex = 1;
-            this.textBoxDesconto.TextChanged += new System.EventHandler(this.textBoxCodigo_TextChanged);
+            this.labelQuantidade.AutoSize = true;
+            this.labelQuantidade.Location = new System.Drawing.Point(462, 41);
+            this.labelQuantidade.Name = "labelQuantidade";
+            this.labelQuantidade.Size = new System.Drawing.Size(24, 13);
+            this.labelQuantidade.TabIndex = 0;
+            this.labelQuantidade.Text = "Qtd";
             // 
-            // btnAdicionar
+            // labelPreco
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(598, 53);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(75, 25);
-            this.btnAdicionar.TabIndex = 2;
-            this.btnAdicionar.Text = "Adicionar";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.labelPreco.AutoSize = true;
+            this.labelPreco.Location = new System.Drawing.Point(389, 42);
+            this.labelPreco.Name = "labelPreco";
+            this.labelPreco.Size = new System.Drawing.Size(35, 13);
+            this.labelPreco.TabIndex = 0;
+            this.labelPreco.Text = "Preço";
+            // 
+            // labelUnidade
+            // 
+            this.labelUnidade.AutoSize = true;
+            this.labelUnidade.Location = new System.Drawing.Point(300, 42);
+            this.labelUnidade.Name = "labelUnidade";
+            this.labelUnidade.Size = new System.Drawing.Size(27, 13);
+            this.labelUnidade.TabIndex = 0;
+            this.labelUnidade.Text = "Und";
+            // 
+            // labelDescricao
+            // 
+            this.labelDescricao.AutoSize = true;
+            this.labelDescricao.Location = new System.Drawing.Point(127, 43);
+            this.labelDescricao.Name = "labelDescricao";
+            this.labelDescricao.Size = new System.Drawing.Size(55, 13);
+            this.labelDescricao.TabIndex = 0;
+            this.labelDescricao.Text = "Descrição";
+            // 
+            // labelCodigo
+            // 
+            this.labelCodigo.AutoSize = true;
+            this.labelCodigo.Location = new System.Drawing.Point(9, 42);
+            this.labelCodigo.Name = "labelCodigo";
+            this.labelCodigo.Size = new System.Drawing.Size(43, 13);
+            this.labelCodigo.TabIndex = 0;
+            this.labelCodigo.Text = " Código";
             // 
             // dataGridView1
             // 
@@ -398,6 +401,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmPedido";
             this.Text = "FrmPedido";
+            this.Load += new System.EventHandler(this.FrmPedido_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

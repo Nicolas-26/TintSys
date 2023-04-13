@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="Nivel.cs" />
     <Compile Include="Caixa.cs" />
-    <Compile Include="Clientes.cs" />
+    <Compile Include="Cliente.cs" />
     <Compile Include="Endereco.cs" />
     <Compile Include="ItemPedido.cs" />
     <Compile Include="Banco.cs" />
