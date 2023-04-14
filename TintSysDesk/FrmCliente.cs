@@ -23,6 +23,7 @@ namespace TintSysDesk
             //Clientes cli = new Clientes();
             //cli.Excluir(2); 
             CarregaGrid();
+            CarregaGridEnd();
            
         }
 
@@ -103,7 +104,7 @@ namespace TintSysDesk
                 dgvEndereco.Rows[a].Cells[7].Value = item.Estado;
                 dgvEndereco.Rows[a].Cells[8].Value = item.UF;
                 dgvEndereco.Rows[a].Cells[9].Value = item.Tipo;
-                dgvEndereco.Rows[a].Cells[10].Value = item.Clientes.Id.ToString();
+                dgvEndereco.Rows[a].Cells[10].Value = item.Cliente.Id.ToString();
                 a++;
             }
         }
@@ -111,10 +112,36 @@ namespace TintSysDesk
         private void btnInserirEnd_Click(object sender, EventArgs e)
         {
             Endereco end = new Endereco(
-                txtCepEnd.Text, txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, txtUF.Text, txtTipoEnd.Text
+                txtCepEnd.Text, txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, Convert.ToString(txtUF.Text), txtTipoEnd.Text
                 );
             end.Inserir(2);
             txtIdEnd.Text = end.Id.ToString();
+        }
+
+        private void btnConsultarEnd_Click(object sender, EventArgs e)
+        {
+            Endereco end = Endereco.ObterPorId(Convert.ToInt32(txtIdEnd.Text));
+            txtCepEnd.Text = end.Cep;
+            txtLograEnd.Text = end.Logradouro;
+            txtBairroEnd.Text = end.Bairro;
+            txtCidadeEnd.Text = end.Cidade;
+            txtEstadoEnd.Text = end.Estado;
+            txtUF.Text = end.UF.ToString();
+            txtTipoEnd.Text = end.Tipo;
+            txtCliente_id.Text = end.Cliente.Id.ToString();
+        }
+
+        private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnEditarEnd_Click(object sender, EventArgs e)
+        {
+            Endereco endereco = new Endereco( txtCepEnd.Text,
+                txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, Convert.ToString(txtUF.Text), txtTipoEnd.Text
+                );
+            endereco.Atualizar(Convert.ToInt32(txtIdEnd.Text));
         }
     }
 }

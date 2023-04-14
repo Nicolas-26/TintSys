@@ -33,7 +33,7 @@ namespace TintSysClass
         public string Estado { get { return estado; } set {  estado = value; } }
         public string UF { get { return uf; } set { uf = value; } }
         public string Tipo { get { return tipo; } set {  tipo = value; } }
-        public Cliente Clientes { get; set; }
+        public Cliente Cliente { get; set; }
 
         //métodos construtores
         public Endereco() { }
@@ -70,7 +70,7 @@ namespace TintSysClass
             Estado = estado;
             UF = uf;
             Tipo = tipo;
-            Clientes = clientes;
+            Cliente = clientes;
         }
         public Endereco(string cep, string logradouro, string bairro, string cidade, string estado, string uf, string tipo, Cliente clientes)
         {
@@ -81,7 +81,7 @@ namespace TintSysClass
             Estado = estado;
             UF = uf;
             Tipo = tipo;
-            Clientes = clientes;
+            Cliente = clientes;
         }
         public Endereco(string cep, string logradouro, string bairro, string cidade, string estado, string uf, string tipo)
         {
@@ -110,38 +110,66 @@ namespace TintSysClass
             Banco.Fechar(cmd);
         }
 
-        public static List<Endereco> ListarPorCliente(int cliente_id)
+        public static Endereco ObterPorId(int id)
         {
+            Endereco endereco = new Endereco();
             List<Endereco> list = new List<Endereco>();
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo where cliente_id = " + cliente_id;
+            cmd.CommandText = "select * from enderecos where id = @id";
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                list.Add(new Endereco(
-                    dr.GetInt32(0),
-                    dr.GetString(1),
-                    dr.GetString(2),
-                    dr.GetString(3),
-                    dr.GetString(4),
-                    dr.GetString(5),
-                    dr.GetString(6),
-                    dr.GetString(7),
-                    dr.GetString(8),
-                    dr.GetString(9)
-                    ));
+                endereco.Id = dr.GetInt32(0);
+                endereco.Cep = dr.GetString(1);
+                endereco.Logradouro = dr.GetString(2);
+                endereco.Bairro = dr.GetString(5);
+                endereco.Cidade = dr.GetString(6);
+                endereco.Estado = dr.GetString(7);
+                endereco.UF = dr.GetString(8);
+                endereco.Tipo = dr.GetString(9);
+                endereco.Cliente = Cliente.ObterPorId(Convert.ToInt32(dr.GetInt32(10)));
+                list.Add(endereco);
             }
+            Banco.Fechar(cmd);
+            return endereco;
+        }
+
+        public static List<Endereco> ListarPorCliente(int cliente_id)
+        {
+            List<Endereco> list = new List<Endereco>();
+            Endereco endereco = new Endereco();
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from enderecos where cliente_id = " + cliente_id;
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                endereco.Id = dr.GetInt32(0);
+                endereco.Cep = dr.GetString(1);
+                endereco.Logradouro = dr.GetString(2);
+                endereco.Bairro = dr.GetString(5);
+                endereco.Cidade = dr.GetString(6);
+                endereco.Estado = dr.GetString(7);
+                endereco.UF = dr.GetString(8);
+                endereco.Tipo = dr.GetString(9);
+                endereco.Cliente = Cliente.ObterPorId(Convert.ToInt32(dr.GetInt32(10)));
+                list.Add(endereco);
+            }
+            Banco.Fechar(cmd);
             return list;
         }
 
-        public void Atualizar()
+        public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update from endereco set logradouro = @logradouro, bairro = @bairro, cidade = @cidade, estado = @estado where id = " + id;
-            cmd.Parameters.AddWithValue("@logardouro", Logradouro);
+            cmd.CommandText = "update enderecos set cep = @cep, logradouro = @logradouro, bairro = @bairro, cidade = @cidade, estado = @estado, uf = @uf, tipo = @tipo where id = " + id;
+            cmd.Parameters.AddWithValue("@cep", Cep);
+            cmd.Parameters.AddWithValue("@logradouro", Logradouro);
             cmd.Parameters.AddWithValue("@bairro", Bairro);
             cmd.Parameters.AddWithValue("@cidade", Cidade);
-            cmd.Parameters.AddWithValue("@estado", Estado); 
+            cmd.Parameters.AddWithValue("@estado", Estado);
+            cmd.Parameters.AddWithValue("@uf", UF);
+            cmd.Parameters.AddWithValue("@tipo", Tipo);
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);  
         }

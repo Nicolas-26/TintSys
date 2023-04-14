@@ -14,7 +14,7 @@ namespace TintSysClass
 
         //propriedades
         public int Id { get { return id; } set { id = value; } }
-        public Produto Produtos { get; set; }
+        public Produto Produto { get; set; }
         public double Preco { get; set; }
         public double Quantidade { get; set; }
         public double Desconto { get; set; }
@@ -24,14 +24,14 @@ namespace TintSysClass
         public ItemPedido(int id, Produto produtos, double preco, double quantidade, double desconto)
         {
             Id = id;
-            Produtos = produtos;
+            Produto = produtos;
             Preco = preco;
             Quantidade = quantidade;
             Desconto = desconto;
         }
         public ItemPedido(Produto produtos, double preco, double quantidade, double desconto)
         {
-            Produtos = produtos;
+            Produto = produtos;
             Preco = preco;
             Quantidade = quantidade;
             Desconto = desconto;
@@ -41,12 +41,12 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert itempedido (pedido_id, produto_id, preco, quantidade, desconto)" +
-                " values (@produto, @preco, @quantidade, @desconto)";
-            cmd.Parameters.Clear();
+                " values (´@pedido, @produto, @preco, @quantidade, @desconto)";
             cmd.Parameters.Add("@pedido", MySqlDbType.Int32).Value = Id;
-            cmd.Parameters.Add("@preco",MySqlDbType.Decimal).Value = Produtos.Preco;
+            cmd.Parameters.Add("@produto", MySqlDbType.Int32).Value = Produto.Id;
+            cmd.Parameters.Add("@preco",MySqlDbType.Double).Value = Produto.Preco;
             cmd.Parameters.Add("@quantidade",MySqlDbType.Decimal).Value = Quantidade;
-            cmd.Parameters.Add("@desconto",MySqlDbType.Decimal).Value = Desconto;
+            cmd.Parameters.Add("@desconto",MySqlDbType.Double).Value = Desconto;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -64,7 +64,7 @@ namespace TintSysClass
             while(dr.Read())
             {
                 item.Id = dr.GetInt32(0);
-                item.Produtos = Produto.ObterPorId(dr.GetInt32(2));
+                item.Produto = Produto.ObterPorId(dr.GetInt32(2));
                 item.Preco = dr.GetDouble(3);
                 item.Quantidade = dr.GetDouble(4);
                 item.Desconto = dr.GetDouble(5);
@@ -83,7 +83,7 @@ namespace TintSysClass
             while(dr.Read())
             {
                 item.Id = dr.GetInt32(0);
-                item.Produtos = Produto.ObterPorId(dr.GetInt32(2));
+                item.Produto = Produto.ObterPorId(dr.GetInt32(2));
                 item.Preco = dr.GetDouble(3);
                 item.Quantidade = dr.GetDouble(4);
                 item.Desconto = dr.GetDouble(5);
@@ -98,7 +98,7 @@ namespace TintSysClass
             cmd.CommandText = "update itempedido set quantidade = @quantidade, desconto = @desconto"+
                 " where pedido_id = @pedido and produto_id = @produto";
             cmd.Parameters.Add("@pedido",MySqlDbType.Int32).Value = pedido_id;
-            cmd.Parameters.Add("@produto", MySqlDbType.Int32).Value = Produtos.Id;
+            cmd.Parameters.Add("@produto", MySqlDbType.Int32).Value = Produto.Id;
             cmd.Parameters.Add("@quantidade", MySqlDbType.Double).Value = Quantidade;
             cmd.Parameters.Add("@desconto",MySqlDbType.Double).Value = Desconto;
             cmd.ExecuteNonQuery();
