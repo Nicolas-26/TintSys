@@ -61,7 +61,7 @@ namespace TintSysClass
             cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
             cmd.Parameters.Add("@preco", MySqlDbType.Double).Value = Preco;
-            cmd.Parameters.Add("@desconto", MySqlDbType.Double).Value = Desconto/100;
+            cmd.Parameters.Add("@desconto", MySqlDbType.Double).Value = Desconto;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -119,7 +119,7 @@ namespace TintSysClass
             return prod;
         }
 
-        public void Atualizar()
+        public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set descricao = @descricao, unidade = @unidade, codbar = @codbar, preco = @preco, desconto = @desconto where id = " + id;

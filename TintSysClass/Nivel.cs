@@ -25,23 +25,25 @@ namespace TintSysClass
         //public static string Nome { get { return nome; } set { nome = value; } }
         //public static string Sigla { get { return sigla; } set { sigla = value; } }
 
-        public static int Id { get; set; }
+        public static int Idd { get; set; }
         public static string Nome { get; set; }
         public static string Sigla { get; set; }
 
-
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Siglaa { get; set; }
         //métodos construtores
         public Nivel() { }
         public Nivel(string _nome, string _sigla)
         {
-            Nome = _nome;
-            Sigla = _sigla;
+            Name = _nome;
+            Siglaa = _sigla;
         }
         public Nivel(int _id, string _nome, string _sigla)
         {
             Id = _id;
-            Nome = _nome;
-            Sigla = _sigla;
+            Name = _nome;
+            Siglaa = _sigla;
         }
 
         //métodos de acesso(insert,excluir,alterar..)
@@ -52,8 +54,8 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert niveis (nome, sigla) values (@nome, @sigla)";
-            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            cmd.Parameters.Add("@sigla", MySqlDbType.VarChar).Value = Sigla;
+            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Name;
+            cmd.Parameters.Add("@sigla", MySqlDbType.VarChar).Value = Siglaa;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -109,14 +111,13 @@ namespace TintSysClass
         /// <summary>
         /// Método para atualizar/alterar, um campo na tabela Niveis do Banco de dados
         /// </summary>
-        public void Atualizar()
+        public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update niveis set nome = @nome, sigla = @sigla where id = @id";
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
-            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            cmd.Parameters.Add("@sigla", MySqlDbType.VarChar).Value = Sigla;
+            cmd.CommandText = "update niveis set nome = @nome, sigla = @sigla where id = " + id;
+            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Name;
+            cmd.Parameters.Add("@sigla", MySqlDbType.VarChar).Value = Siglaa;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }

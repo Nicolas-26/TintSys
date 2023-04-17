@@ -50,7 +50,6 @@
             this.clnDescontoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnInativoProduto = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnInserirProduto = new System.Windows.Forms.Button();
-            this.btnListarProduto = new System.Windows.Forms.Button();
             this.btnEditarProduto = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
@@ -272,20 +271,10 @@
             this.btnInserirProduto.UseVisualStyleBackColor = true;
             this.btnInserirProduto.Click += new System.EventHandler(this.btnInserirProduto_Click);
             // 
-            // btnListarProduto
-            // 
-            this.btnListarProduto.Location = new System.Drawing.Point(205, 182);
-            this.btnListarProduto.Name = "btnListarProduto";
-            this.btnListarProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnListarProduto.TabIndex = 5;
-            this.btnListarProduto.Text = "Listar";
-            this.btnListarProduto.UseVisualStyleBackColor = true;
-            this.btnListarProduto.Click += new System.EventHandler(this.btnListarProduto_Click);
-            // 
             // btnEditarProduto
             // 
             this.btnEditarProduto.Enabled = false;
-            this.btnEditarProduto.Location = new System.Drawing.Point(319, 182);
+            this.btnEditarProduto.Location = new System.Drawing.Point(226, 182);
             this.btnEditarProduto.Name = "btnEditarProduto";
             this.btnEditarProduto.Size = new System.Drawing.Size(75, 23);
             this.btnEditarProduto.TabIndex = 5;
@@ -330,7 +319,6 @@
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnEditarProduto);
-            this.Controls.Add(this.btnListarProduto);
             this.Controls.Add(this.btnInserirProduto);
             this.Controls.Add(this.dataGridViewProduto);
             this.Controls.Add(this.cbxUnidadeProduto);
@@ -373,7 +361,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridViewProduto;
         private System.Windows.Forms.Button btnInserirProduto;
-        private System.Windows.Forms.Button btnListarProduto;
         private System.Windows.Forms.Button btnEditarProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClnIdProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDescricaoProduto;

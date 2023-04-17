@@ -24,7 +24,7 @@ namespace TintSysDesk
             //cli.Excluir(2); 
             CarregaGrid();
             CarregaGridEnd();
-           
+            CarregaGridTel();
         }
 
         private void btnInserirCliente_Click(object sender, EventArgs e)
@@ -50,7 +50,8 @@ namespace TintSysDesk
             Cliente c = new Cliente(
                 int.Parse(txtIdCliente.Text), txtNomeCliente.Text, mstCpf.Text, txtEmailCliente.Text
                 );
-            c.Alterar(8);
+            c.Alterar(Convert.ToInt32(txtIdCliente.Text));
+            CarregaGrid();
         }
 
         private void tpgDadosPessoais_Click(object sender, EventArgs e)
@@ -88,7 +89,7 @@ namespace TintSysDesk
 
         private void CarregaGridEnd()
         {
-            List<Endereco> list = new List<Endereco>();
+            List<Endereco> list = Endereco.Listar();
             int a = 0;
             dgvEndereco.Rows.Clear();
             foreach(var item in list)
@@ -112,10 +113,12 @@ namespace TintSysDesk
         private void btnInserirEnd_Click(object sender, EventArgs e)
         {
             Endereco end = new Endereco(
-                txtCepEnd.Text, txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, Convert.ToString(txtUF.Text), txtTipoEnd.Text
+                txtCepEnd.Text, txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, Convert.ToString(txtUF.Text), txtTipoEnd.Text,
+                Cliente.ObterPorId(Convert.ToInt32(txtCliente_id.Text))
                 );
-            end.Inserir(2);
+            end.Inserir();
             txtIdEnd.Text = end.Id.ToString();
+            CarregaGridEnd();
         }
 
         private void btnConsultarEnd_Click(object sender, EventArgs e)
@@ -142,6 +145,50 @@ namespace TintSysDesk
                 txtLograEnd.Text, txtBairroEnd.Text, txtCidadeEnd.Text, txtEstadoEnd.Text, Convert.ToString(txtUF.Text), txtTipoEnd.Text
                 );
             endereco.Atualizar(Convert.ToInt32(txtIdEnd.Text));
+            CarregaGridEnd();
+        }
+
+        private void btnInserirTel_Click(object sender, EventArgs e)
+        {
+            Telefone tel = new Telefone(
+                txtNumeroTel.Text, comboBoxTipo.Text
+                );
+            tel.Inserir(5);
+            txtIdTel.Text = tel.Id.ToString();
+            CarregaGridTel();
+        }
+
+        private void CarregaGridTel()
+        {
+            List<Telefone> list = Telefone.Listar();
+            int a = 0;
+            dgvTelefone.Rows.Clear();
+            foreach(var item in list)
+            {
+                dgvTelefone.Rows.Add();
+                dgvTelefone.Rows[a].Cells[0].Value = item.Id.ToString();
+                dgvTelefone.Rows[a].Cells[1].Value = item.Numero;
+                dgvTelefone.Rows[a].Cells[2].Value = item.Tipo;
+                dgvTelefone.Rows[a].Cells[3].Value = item.Cliente.Id.ToString();
+                a++;
+            }
+        }
+
+        private void btnConsultarTel_Click(object sender, EventArgs e)
+        {
+            var telefone = Telefone.ObterPorId(Convert.ToInt32(txtIdTel.Text));
+            txtNumeroTel.Text = telefone.Numero;
+            comboBoxTipo.Text = telefone.Tipo;
+            txtClienteidTel.Text = telefone.Cliente.Id.ToString();
+        }
+
+        private void btnEditarTel_Click(object sender, EventArgs e)
+        {
+            Telefone tel = new Telefone(
+                txtNumeroTel.Text, comboBoxTipo.Text
+                );
+            tel.Atualizar(Convert.ToInt32(txtIdTel.Text));
+            CarregaGridTel();
         }
     }
 }

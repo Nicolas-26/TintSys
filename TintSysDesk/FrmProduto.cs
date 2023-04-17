@@ -100,22 +100,14 @@ namespace TintSysDesk
         private void btnEditarProduto_Click(object sender, EventArgs e)
         {
             Produto produto = new Produto(
-                int.Parse(txtIdProduto.Text),
                 txtDescricaoProduto.Text,
                 cbxUnidadeProduto.Text,
                 txtCodBarProduto.Text,
-                double.Parse(txtDescontoProduto.Text),
                 double.Parse(txtPrecoProduto.Text),
-                checkBoxDescontinuado.Checked
+                double.Parse(txtDescontoProduto.Text)
                 );
-            produto.Atualizar();
-        }
-
-        private void btnListarProduto_Click(object sender, EventArgs e)
-        {
-        //    List<Produto> list = Produto.Listar(
-        //        txtIdProduto.Text, txtDescricaoProduto.Text, txt);
-             
+            produto.Atualizar(Convert.ToInt32(txtIdProduto.Text));
+            CarregaGrid();
         }
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

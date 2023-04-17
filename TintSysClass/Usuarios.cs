@@ -97,7 +97,7 @@ namespace TintSysClass
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "insert usuarios (nome, email, senha, nivel_id, ativo)" +
-                "values (@nome, @email, md5(@senha), @nivel, 1)";
+                "values (@nome, @email, @senha, @nivel, 1)";
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
             cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = Email;
             cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
@@ -173,12 +173,12 @@ namespace TintSysClass
         /// <summary>
         /// Método para atualizar os campo nome e senha do usuário por id.
         /// </summary>
-        public void Atualizar()
+        public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update usuarios set nome = @nome, email = @email, senha = md5(@senha), " +
-                "where id = " + id;
+            cmd.CommandText = "update usuarios set nome = @nome, email = @email, senha = md5(@senha)" +
+                " where id = " + id;
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
             cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = Email;
             cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;

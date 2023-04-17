@@ -14,30 +14,33 @@ namespace TintSysClass
         private int id;
         private string numero;
         private string tipo;
-        private Cliente clientes;
 
         //propriedades
         public int Id { get { return id; } set {  id = value; } }
         public string Numero { get { return numero; } set {  numero = value; } }
         public string Tipo { get {  return tipo; } set {  tipo = value; } }
-        public Cliente Clientes { get { return clientes; } set { clientes = value; } } 
+        public Cliente Cliente { get; set; } 
 
         //métodos construtores
         public Telefone() { }
         public Telefone(int id, string numero, string tipo)
         {
-            this.id = Id;
-            this.numero = Numero;
-            this.tipo = Tipo;
+            Id = id;
+            Numero = numero;
+            Tipo = tipo;
         }
-        public Telefone(int id, string numero, string tipo, Cliente clientes)
+        public Telefone(int id, string numero, string tipo, Cliente cliente)
         {
-            this.id = Id;
-            this.numero = Numero;
-            this.tipo = Tipo;
-            this.clientes = Clientes;
+            Id = id;
+            Numero = numero;
+            Tipo = tipo;
+            Cliente = cliente;
         }
-
+        public Telefone(string numero, string tipo)
+        {
+            Numero = numero;
+            Tipo = tipo;
+        }
         //métodos de acesso
 
         /// <summary>
@@ -46,12 +49,34 @@ namespace TintSysClass
         public void Inserir(int cliente_id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "insert telefones (cliente_id, numero, tipo)" +
-                "values (" + cliente_id + ",'" + Numero + "','" + Tipo + "')";
+            cmd.CommandText = "insert telefones (numero, tipo, cliente_id)" +
+                " values (@numero, @tipo, @cliente)";
+            cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = Numero;
+            cmd.Parameters.Add("@tipo", MySqlDbType.VarChar).Value = Tipo;
+            cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = cliente_id;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
+        }
+
+        public static Telefone ObterPorId(int id)
+        {
+            Telefone telefone = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from telefones where id = " + id;
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                telefone = new Telefone(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    Cliente.ObterPorId(dr.GetInt32(3))
+                    );
+            }
+            Banco.Fechar(cmd);
+            return telefone;
         }
 
         /// <summary>
@@ -77,10 +102,30 @@ namespace TintSysClass
             return telefones;
         }
 
+        public static List<Telefone> Listar()
+        {
+            List<Telefone> teles = new List<Telefone>();
+            Telefone tel = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from telefones";
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                tel = new Telefone();
+                tel.Id = dr.GetInt32(0);
+                tel.Numero = dr.GetString(1);
+                tel.Tipo = dr.GetString(2);
+                tel.Cliente = Cliente.ObterPorId(dr.GetInt32(3));
+                teles.Add(tel);
+            }
+            Banco.Fechar(cmd);
+            return teles;
+        }
+
         public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update telefone set numero = @numero and tipo = @tipo where id = " + id;
+            cmd.CommandText = "update telefones set numero = @numero, tipo = @tipo where id = " + id;
             cmd.Parameters.Add("@numero",MySqlDbType.VarChar).Value = Numero;
             cmd.Parameters.Add("@tipo",MySqlDbType.VarChar).Value = Tipo;
             cmd.ExecuteNonQuery();

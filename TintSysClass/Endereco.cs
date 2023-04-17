@@ -99,11 +99,19 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir as informações do meu cliente.
         /// </summary>
-        public void Inserir(int cliente_id)
+        public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "insert enderecos (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo)" +
-                "values ("+cliente_id+",'"+Cep+"','"+Logradouro+"', default, default,'"+Bairro+"','"+Cidade+"','"+Estado+"','"+UF+"','"+Tipo+"')";
+            cmd.CommandText = "insert enderecos (cep, logradouro, numero, complemento, bairro, cidade, estado, uf, tipo, cliente_id)" +
+                "values (@cep, @logradouro, default, default, @bairro, @cidade, @estado, @uf, @tipo, @cliente)";
+            cmd.Parameters.Add("@cep", MySqlDbType.VarChar).Value = Cep;
+            cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = Logradouro;
+            cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = Bairro;
+            cmd.Parameters.Add("@cidade", MySqlDbType.VarChar).Value = Cidade;
+            cmd.Parameters.Add("@estado", MySqlDbType.VarChar).Value = Estado;
+            cmd.Parameters.Add("@uf", MySqlDbType.VarChar).Value = UF;
+            cmd.Parameters.Add("@tipo", MySqlDbType.VarChar).Value = Tipo;
+            cmd.Parameters.Add("@cliente", MySqlDbType.VarChar).Value = Cliente.Id;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -133,6 +141,31 @@ namespace TintSysClass
             }
             Banco.Fechar(cmd);
             return endereco;
+        }
+
+        public static List<Endereco> Listar()
+        {
+            List<Endereco> list = new List<Endereco>();
+            Endereco endereco = null;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from enderecos";
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                endereco = new Endereco();
+                endereco.Id = dr.GetInt32(0);
+                endereco.Cep = dr.GetString(1);
+                endereco.Logradouro = dr.GetString(2);
+                endereco.Bairro = dr.GetString(5);
+                endereco.Cidade = dr.GetString(6);
+                endereco.Estado = dr.GetString(7);
+                endereco.UF = dr.GetString(8);
+                endereco.Tipo = dr.GetString(9);
+                endereco.Cliente = Cliente.ObterPorId(dr.GetInt32(10));
+                list.Add(endereco);
+            }
+            Banco.Fechar(cmd);
+            return list;
         }
 
         public static List<Endereco> ListarPorCliente(int cliente_id)
