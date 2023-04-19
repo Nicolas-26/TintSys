@@ -27,7 +27,7 @@ namespace TintSysDesk
             foreach (var item in listaN)
             {
                 dgvNíveis.Rows.Add();
-                dgvNíveis.Rows[l].Cells[0].Value = item.Id.ToString();
+                dgvNíveis.Rows[l].Cells[0].Value = item.Idd.ToString();
                 dgvNíveis.Rows[l].Cells[1].Value = item.Name;
                 dgvNíveis.Rows[l].Cells[2].Value = item.Siglaa;
                 l++;
@@ -38,6 +38,7 @@ namespace TintSysDesk
         {
             CarregaGridNivel();
             CarregaGrid();
+            CarrregaComboNivel();
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -54,8 +55,8 @@ namespace TintSysDesk
         private void CarrregaComboNivel()
         {
             comboBoxNivel.DataSource = Nivel.Listar();
-            //comboBoxNivel.ValueMember = "Id";
-            comboBoxNivel.DisplayMember = "Nome";
+            comboBoxNivel.DisplayMember = "Name";
+            comboBoxNivel.ValueMember = "Idd";
         }
 
         private void CarregaGrid()
@@ -70,8 +71,8 @@ namespace TintSysDesk
                 dgvUsuarios.Rows[linha].Cells[1].Value = item.Nome;
                 dgvUsuarios.Rows[linha].Cells[2].Value = item.Email;
                 dgvUsuarios.Rows[linha].Cells[3].Value = item.Senha;
-                dgvUsuarios.Rows[linha].Cells[4].Value = item.Nivel;
-                //dgvUsuarios.Rows[linha].Cells[5].Value = item.Ativo;
+                dgvUsuarios.Rows[linha].Cells[4].Value = item.Nivel.Idd;
+                dgvUsuarios.Rows[linha].Cells[5].Value = item.Ativo;
                 linha++;
             }
         }
@@ -88,7 +89,7 @@ namespace TintSysDesk
         {
             Nivel nivel = new Nivel(txtNomeNível.Text, txtSigla.Text);
             nivel.Inserir();
-            txtIdNível.Text = nivel.Id.ToString();
+            txtIdNível.Text = nivel.Idd.ToString();
             CarregaGridNivel();
         }
 
@@ -116,6 +117,11 @@ namespace TintSysDesk
                 );
             user.Atualizar(Convert.ToInt32(txtId.Text));
             CarregaGrid();
+        }
+
+        private void comboBoxNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

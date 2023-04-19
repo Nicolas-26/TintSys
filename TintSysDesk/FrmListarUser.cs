@@ -30,10 +30,15 @@ namespace TintSysDesk
                 dgvListar.Rows[l].Cells[1].Value = us.Nome;
                 dgvListar.Rows[l].Cells[2].Value = us.Email;
                 dgvListar.Rows[l].Cells[3].Value = us.Senha;
-                dgvListar.Rows[l].Cells[4].Value = us.Nivel;
+                dgvListar.Rows[l].Cells[4].Value = us.Nivel.Idd;
                 dgvListar.Rows[l].Cells[5].Value = us.Ativo;
                 l++;
             }
+        }
+
+        private void dgvListar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

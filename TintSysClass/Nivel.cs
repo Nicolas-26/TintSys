@@ -25,11 +25,11 @@ namespace TintSysClass
         //public static string Nome { get { return nome; } set { nome = value; } }
         //public static string Sigla { get { return sigla; } set { sigla = value; } }
 
-        public static int Idd { get; set; }
+        public static int Id { get; set; }
         public static string Nome { get; set; }
         public static string Sigla { get; set; }
 
-        public int Id { get; set; }
+        public int Idd { get; set; }
         public string Name { get; set; }
         public string Siglaa { get; set; }
         //métodos construtores
@@ -41,7 +41,7 @@ namespace TintSysClass
         }
         public Nivel(int _id, string _nome, string _sigla)
         {
-            Id = _id;
+            Idd = _id;
             Name = _nome;
             Siglaa = _sigla;
         }
@@ -58,7 +58,7 @@ namespace TintSysClass
             cmd.Parameters.Add("@sigla", MySqlDbType.VarChar).Value = Siglaa;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            Idd = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
         }
 

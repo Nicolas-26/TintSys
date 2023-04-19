@@ -56,6 +56,7 @@
             this.dgvListar.RowHeadersVisible = false;
             this.dgvListar.Size = new System.Drawing.Size(788, 247);
             this.dgvListar.TabIndex = 0;
+            this.dgvListar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListar_CellContentClick);
             // 
             // Column1
             // 

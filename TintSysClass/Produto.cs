@@ -147,5 +147,13 @@ namespace TintSysClass
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
+
+        public void Excluir(int id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "delete produtos where id = " + id;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
+        }
     }
 }

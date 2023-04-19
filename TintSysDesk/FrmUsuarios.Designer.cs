@@ -43,11 +43,6 @@
             this.labelSenha = new System.Windows.Forms.Label();
             this.labelNivel = new System.Windows.Forms.Label();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.clnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnNivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,14 +50,20 @@
             this.txtSigla = new System.Windows.Forms.TextBox();
             this.txtNomeNível = new System.Windows.Forms.TextBox();
             this.txtIdNível = new System.Windows.Forms.TextBox();
+            this.btnConsultarNível = new System.Windows.Forms.Button();
+            this.btnInserirNível = new System.Windows.Forms.Button();
+            this.btnEditarNível = new System.Windows.Forms.Button();
             this.dgvNíveis = new System.Windows.Forms.DataGridView();
             this.clnIdNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnNomeNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnSiglaNível = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDeleteNível = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnConsultarNível = new System.Windows.Forms.Button();
-            this.btnInserirNível = new System.Windows.Forms.Button();
-            this.btnEditarNível = new System.Windows.Forms.Button();
+            this.clnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnSenha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnNivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNíveis)).BeginInit();
@@ -143,6 +144,7 @@
             this.comboBoxNivel.Name = "comboBoxNivel";
             this.comboBoxNivel.Size = new System.Drawing.Size(77, 21);
             this.comboBoxNivel.TabIndex = 4;
+            this.comboBoxNivel.SelectedIndexChanged += new System.EventHandler(this.comboBoxNivel_SelectedIndexChanged);
             // 
             // checkBox1
             // 
@@ -199,53 +201,15 @@
             this.clnId,
             this.clnNome,
             this.clnEmail,
+            this.clnSenha,
             this.clnNivel,
-            this.clnAtivo});
+            this.Column1});
             this.dgvUsuarios.Location = new System.Drawing.Point(12, 249);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersVisible = false;
-            this.dgvUsuarios.Size = new System.Drawing.Size(547, 200);
+            this.dgvUsuarios.Size = new System.Drawing.Size(652, 200);
             this.dgvUsuarios.TabIndex = 6;
-            // 
-            // clnId
-            // 
-            this.clnId.Frozen = true;
-            this.clnId.HeaderText = "Id";
-            this.clnId.Name = "clnId";
-            this.clnId.ReadOnly = true;
-            this.clnId.Width = 40;
-            // 
-            // clnNome
-            // 
-            this.clnNome.Frozen = true;
-            this.clnNome.HeaderText = "Nome";
-            this.clnNome.Name = "clnNome";
-            this.clnNome.ReadOnly = true;
-            this.clnNome.Width = 174;
-            // 
-            // clnEmail
-            // 
-            this.clnEmail.Frozen = true;
-            this.clnEmail.HeaderText = "Email";
-            this.clnEmail.Name = "clnEmail";
-            this.clnEmail.ReadOnly = true;
-            this.clnEmail.Width = 174;
-            // 
-            // clnNivel
-            // 
-            this.clnNivel.Frozen = true;
-            this.clnNivel.HeaderText = "Nível";
-            this.clnNivel.Name = "clnNivel";
-            this.clnNivel.ReadOnly = true;
-            // 
-            // clnAtivo
-            // 
-            this.clnAtivo.Frozen = true;
-            this.clnAtivo.HeaderText = "Ativo";
-            this.clnAtivo.Name = "clnAtivo";
-            this.clnAtivo.ReadOnly = true;
-            this.clnAtivo.Width = 60;
             // 
             // groupBox1
             // 
@@ -313,6 +277,51 @@
             this.txtIdNível.Size = new System.Drawing.Size(41, 20);
             this.txtIdNível.TabIndex = 2;
             // 
+            // btnConsultarNível
+            // 
+            this.btnConsultarNível.FlatAppearance.BorderSize = 0;
+            this.btnConsultarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnConsultarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarNível.Image = global::TintSysDesk.Properties.Resources.Search;
+            this.btnConsultarNível.Location = new System.Drawing.Point(136, 135);
+            this.btnConsultarNível.Name = "btnConsultarNível";
+            this.btnConsultarNível.Size = new System.Drawing.Size(75, 48);
+            this.btnConsultarNível.TabIndex = 1;
+            this.btnConsultarNível.Text = "Consultar";
+            this.btnConsultarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarNível.UseVisualStyleBackColor = true;
+            this.btnConsultarNível.Click += new System.EventHandler(this.btnConsultarNível_Click);
+            // 
+            // btnInserirNível
+            // 
+            this.btnInserirNível.FlatAppearance.BorderSize = 0;
+            this.btnInserirNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnInserirNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInserirNível.Image = global::TintSysDesk.Properties.Resources.Add;
+            this.btnInserirNível.Location = new System.Drawing.Point(31, 135);
+            this.btnInserirNível.Name = "btnInserirNível";
+            this.btnInserirNível.Size = new System.Drawing.Size(75, 48);
+            this.btnInserirNível.TabIndex = 0;
+            this.btnInserirNível.Text = "Inserir";
+            this.btnInserirNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInserirNível.UseVisualStyleBackColor = true;
+            this.btnInserirNível.Click += new System.EventHandler(this.btnInserirNível_Click);
+            // 
+            // btnEditarNível
+            // 
+            this.btnEditarNível.FlatAppearance.BorderSize = 0;
+            this.btnEditarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
+            this.btnEditarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarNível.Image = global::TintSysDesk.Properties.Resources.Edit;
+            this.btnEditarNível.Location = new System.Drawing.Point(262, 135);
+            this.btnEditarNível.Name = "btnEditarNível";
+            this.btnEditarNível.Size = new System.Drawing.Size(75, 48);
+            this.btnEditarNível.TabIndex = 0;
+            this.btnEditarNível.Text = "Editar";
+            this.btnEditarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditarNível.UseVisualStyleBackColor = true;
+            this.btnEditarNível.Click += new System.EventHandler(this.btnEditarNível_Click);
+            // 
             // dgvNíveis
             // 
             this.dgvNíveis.AllowUserToAddRows = false;
@@ -362,50 +371,53 @@
             this.clnDeleteNível.Text = "Excluir";
             this.clnDeleteNível.Width = 79;
             // 
-            // btnConsultarNível
+            // clnId
             // 
-            this.btnConsultarNível.FlatAppearance.BorderSize = 0;
-            this.btnConsultarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnConsultarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarNível.Image = global::TintSysDesk.Properties.Resources.Search;
-            this.btnConsultarNível.Location = new System.Drawing.Point(136, 135);
-            this.btnConsultarNível.Name = "btnConsultarNível";
-            this.btnConsultarNível.Size = new System.Drawing.Size(75, 48);
-            this.btnConsultarNível.TabIndex = 1;
-            this.btnConsultarNível.Text = "Consultar";
-            this.btnConsultarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultarNível.UseVisualStyleBackColor = true;
-            this.btnConsultarNível.Click += new System.EventHandler(this.btnConsultarNível_Click);
+            this.clnId.Frozen = true;
+            this.clnId.HeaderText = "Id";
+            this.clnId.Name = "clnId";
+            this.clnId.ReadOnly = true;
+            this.clnId.Width = 40;
             // 
-            // btnInserirNível
+            // clnNome
             // 
-            this.btnInserirNível.FlatAppearance.BorderSize = 0;
-            this.btnInserirNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnInserirNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInserirNível.Image = global::TintSysDesk.Properties.Resources.Add;
-            this.btnInserirNível.Location = new System.Drawing.Point(31, 135);
-            this.btnInserirNível.Name = "btnInserirNível";
-            this.btnInserirNível.Size = new System.Drawing.Size(75, 48);
-            this.btnInserirNível.TabIndex = 0;
-            this.btnInserirNível.Text = "Inserir";
-            this.btnInserirNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnInserirNível.UseVisualStyleBackColor = true;
-            this.btnInserirNível.Click += new System.EventHandler(this.btnInserirNível_Click);
+            this.clnNome.Frozen = true;
+            this.clnNome.HeaderText = "Nome";
+            this.clnNome.Name = "clnNome";
+            this.clnNome.ReadOnly = true;
+            this.clnNome.Width = 174;
             // 
-            // btnEditarNível
+            // clnEmail
             // 
-            this.btnEditarNível.FlatAppearance.BorderSize = 0;
-            this.btnEditarNível.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Brown;
-            this.btnEditarNível.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditarNível.Image = global::TintSysDesk.Properties.Resources.Edit;
-            this.btnEditarNível.Location = new System.Drawing.Point(262, 135);
-            this.btnEditarNível.Name = "btnEditarNível";
-            this.btnEditarNível.Size = new System.Drawing.Size(75, 48);
-            this.btnEditarNível.TabIndex = 0;
-            this.btnEditarNível.Text = "Editar";
-            this.btnEditarNível.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditarNível.UseVisualStyleBackColor = true;
-            this.btnEditarNível.Click += new System.EventHandler(this.btnEditarNível_Click);
+            this.clnEmail.Frozen = true;
+            this.clnEmail.HeaderText = "Email";
+            this.clnEmail.Name = "clnEmail";
+            this.clnEmail.ReadOnly = true;
+            this.clnEmail.Width = 174;
+            // 
+            // clnSenha
+            // 
+            this.clnSenha.Frozen = true;
+            this.clnSenha.HeaderText = "Senha";
+            this.clnSenha.Name = "clnSenha";
+            this.clnSenha.ReadOnly = true;
+            // 
+            // clnNivel
+            // 
+            this.clnNivel.Frozen = true;
+            this.clnNivel.HeaderText = "Nível";
+            this.clnNivel.Name = "clnNivel";
+            this.clnNivel.ReadOnly = true;
+            this.clnNivel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clnNivel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clnNivel.Width = 60;
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Ativo";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // FrmUsuarios
             // 
@@ -458,11 +470,6 @@
         private System.Windows.Forms.Label labelSenha;
         private System.Windows.Forms.Label labelNivel;
         private System.Windows.Forms.DataGridView dgvUsuarios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnNome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnNivel;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clnAtivo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnConsultarNível;
         private System.Windows.Forms.Button btnEditarNível;
@@ -478,5 +485,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnNomeNível;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnSiglaNível;
         private System.Windows.Forms.DataGridViewButtonColumn clnDeleteNível;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnSenha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnNivel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
     }
 }
