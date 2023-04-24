@@ -46,14 +46,14 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir o telefone do Cliente cujo está em outra tabela.
         /// </summary>
-        public void Inserir(int cliente_id)
+        public void Inserir()
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert telefones (numero, tipo, cliente_id)" +
                 " values (@numero, @tipo, @cliente)";
             cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = Numero;
             cmd.Parameters.Add("@tipo", MySqlDbType.VarChar).Value = Tipo;
-            cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = cliente_id;
+            cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = Cliente.Id;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -88,7 +88,7 @@ namespace TintSysClass
         {
             List<Telefone> telefones = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select id, numero, tipo from telefones where ciente_id = " + cliente_id;
+            cmd.CommandText = "select id, numero, tipo from telefones where cliente_id = " + cliente_id;
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
@@ -122,6 +122,10 @@ namespace TintSysClass
             return teles;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Atualizar(int id)
         {
             var cmd = Banco.Abrir();
@@ -130,6 +134,18 @@ namespace TintSysClass
             cmd.Parameters.Add("@tipo",MySqlDbType.VarChar).Value = Tipo;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void Deletar(int id)
+        {
+            var exc = Banco.Abrir();
+            exc.CommandText = "delete telefones where id = " + id;
+            exc.ExecuteNonQuery();
+            Banco.Fechar(exc); 
         }
       
     }

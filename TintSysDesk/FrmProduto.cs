@@ -135,5 +135,16 @@ namespace TintSysDesk
         {
               
         }
+
+        private void btnArquivar_Click(object sender, EventArgs e)
+        {
+            //List<Produto> lista = Produto.Listar();
+            //int c = 0;
+            //dataGridView1.Rows.Clear();
+            //foreach (Produto produto in lista)
+            //{
+            //    dataGridView1.Rows.Add(produto.Id);
+            //}
+        }
     }
 }

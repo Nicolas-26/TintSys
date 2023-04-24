@@ -41,11 +41,11 @@ namespace TintSysClass
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert itempedido (pedido_id, produto_id, preco, quantidade, desconto)" +
-                " values (´@pedido, @produto, @preco, @quantidade, @desconto)";
+                " values (@pedido, @produto, @preco, @quantidade, @desconto)";
             cmd.Parameters.Add("@pedido", MySqlDbType.Int32).Value = Id;
             cmd.Parameters.Add("@produto", MySqlDbType.Int32).Value = Produto.Id;
             cmd.Parameters.Add("@preco",MySqlDbType.Double).Value = Produto.Preco;
-            cmd.Parameters.Add("@quantidade",MySqlDbType.Decimal).Value = Quantidade;
+            cmd.Parameters.Add("@quantidade",MySqlDbType.Double).Value = Quantidade;
             cmd.Parameters.Add("@desconto",MySqlDbType.Double).Value = Desconto;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";

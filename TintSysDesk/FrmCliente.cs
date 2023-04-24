@@ -153,7 +153,7 @@ namespace TintSysDesk
             Telefone tel = new Telefone(
                 txtNumeroTel.Text, comboBoxTipo.Text
                 );
-            tel.Inserir(5);
+            tel.Inserir();
             txtIdTel.Text = tel.Id.ToString();
             CarregaGridTel();
         }

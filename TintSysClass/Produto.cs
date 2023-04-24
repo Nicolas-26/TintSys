@@ -74,7 +74,7 @@ namespace TintSysClass
             var cmd = Banco.Abrir();
             if(descricao.Length > 0)
             {
-                cmd.CommandText = "select * from produtos where descricao like '&" + descricao + "&'";
+                cmd.CommandText = "select * from produtos where descricao like '" + descricao + "%'";
             }
             else
             {
