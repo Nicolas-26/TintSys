@@ -46,14 +46,14 @@ namespace TintSysClass
         /// <summary>
         /// Método para inserir o telefone do Cliente cujo está em outra tabela.
         /// </summary>
-        public void Inserir()
+        public void Inserir(int idc)
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert telefones (numero, tipo, cliente_id)" +
                 " values (@numero, @tipo, @cliente)";
             cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = Numero;
             cmd.Parameters.Add("@tipo", MySqlDbType.VarChar).Value = Tipo;
-            cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = Cliente.Id;
+            cmd.Parameters.Add("@cliente", MySqlDbType.Int32).Value = idc;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());

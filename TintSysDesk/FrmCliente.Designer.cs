@@ -84,6 +84,12 @@
             this.labelCepEnd = new System.Windows.Forms.Label();
             this.labelIdEnd = new System.Windows.Forms.Label();
             this.tpgTelefones = new System.Windows.Forms.TabPage();
+            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
+            this.dgvTelefone = new System.Windows.Forms.DataGridView();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditarTel = new System.Windows.Forms.Button();
             this.btnConsultarTel = new System.Windows.Forms.Button();
             this.btnInserirTel = new System.Windows.Forms.Button();
@@ -94,12 +100,6 @@
             this.labelTipoTel = new System.Windows.Forms.Label();
             this.labelNumeroTel = new System.Windows.Forms.Label();
             this.labelIdTel = new System.Windows.Forms.Label();
-            this.dgvTelefone = new System.Windows.Forms.DataGridView();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
             this.tbcCliente.SuspendLayout();
             this.tpgDadosPessoais.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
@@ -647,6 +647,66 @@
             this.tpgTelefones.TabIndex = 2;
             this.tpgTelefones.Text = "Telefones";
             this.tpgTelefones.UseVisualStyleBackColor = true;
+            this.tpgTelefones.Click += new System.EventHandler(this.tpgTelefones_Click);
+            // 
+            // comboBoxTipo
+            // 
+            this.comboBoxTipo.FormattingEnabled = true;
+            this.comboBoxTipo.Items.AddRange(new object[] {
+            "Residencial",
+            "Celular",
+            "Fixo"});
+            this.comboBoxTipo.Location = new System.Drawing.Point(148, 306);
+            this.comboBoxTipo.Name = "comboBoxTipo";
+            this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipo.TabIndex = 9;
+            // 
+            // dgvTelefone
+            // 
+            this.dgvTelefone.AllowUserToAddRows = false;
+            this.dgvTelefone.AllowUserToDeleteRows = false;
+            this.dgvTelefone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTelefone.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column18,
+            this.Column19,
+            this.Column20,
+            this.Column21});
+            this.dgvTelefone.Location = new System.Drawing.Point(602, 192);
+            this.dgvTelefone.Name = "dgvTelefone";
+            this.dgvTelefone.ReadOnly = true;
+            this.dgvTelefone.RowHeadersVisible = false;
+            this.dgvTelefone.Size = new System.Drawing.Size(504, 150);
+            this.dgvTelefone.TabIndex = 8;
+            // 
+            // Column18
+            // 
+            this.Column18.Frozen = true;
+            this.Column18.HeaderText = "ID";
+            this.Column18.Name = "Column18";
+            this.Column18.ReadOnly = true;
+            // 
+            // Column19
+            // 
+            this.Column19.Frozen = true;
+            this.Column19.HeaderText = "Número";
+            this.Column19.Name = "Column19";
+            this.Column19.ReadOnly = true;
+            this.Column19.Width = 150;
+            // 
+            // Column20
+            // 
+            this.Column20.Frozen = true;
+            this.Column20.HeaderText = "Tipo";
+            this.Column20.Name = "Column20";
+            this.Column20.ReadOnly = true;
+            this.Column20.Width = 149;
+            // 
+            // Column21
+            // 
+            this.Column21.Frozen = true;
+            this.Column21.HeaderText = "Cliente_id";
+            this.Column21.Name = "Column21";
+            this.Column21.ReadOnly = true;
             // 
             // btnEditarTel
             // 
@@ -687,7 +747,6 @@
             // 
             // txtClienteidTel
             // 
-            this.txtClienteidTel.Enabled = false;
             this.txtClienteidTel.Location = new System.Drawing.Point(148, 397);
             this.txtClienteidTel.Name = "txtClienteidTel";
             this.txtClienteidTel.Size = new System.Drawing.Size(90, 20);
@@ -739,65 +798,6 @@
             this.labelIdTel.Size = new System.Drawing.Size(26, 19);
             this.labelIdTel.TabIndex = 0;
             this.labelIdTel.Text = "ID";
-            // 
-            // dgvTelefone
-            // 
-            this.dgvTelefone.AllowUserToAddRows = false;
-            this.dgvTelefone.AllowUserToDeleteRows = false;
-            this.dgvTelefone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTelefone.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column18,
-            this.Column19,
-            this.Column20,
-            this.Column21});
-            this.dgvTelefone.Location = new System.Drawing.Point(602, 192);
-            this.dgvTelefone.Name = "dgvTelefone";
-            this.dgvTelefone.ReadOnly = true;
-            this.dgvTelefone.RowHeadersVisible = false;
-            this.dgvTelefone.Size = new System.Drawing.Size(504, 150);
-            this.dgvTelefone.TabIndex = 8;
-            // 
-            // Column18
-            // 
-            this.Column18.Frozen = true;
-            this.Column18.HeaderText = "ID";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
-            // 
-            // Column19
-            // 
-            this.Column19.Frozen = true;
-            this.Column19.HeaderText = "Número";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            this.Column19.Width = 150;
-            // 
-            // Column20
-            // 
-            this.Column20.Frozen = true;
-            this.Column20.HeaderText = "Tipo";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            this.Column20.Width = 149;
-            // 
-            // Column21
-            // 
-            this.Column21.Frozen = true;
-            this.Column21.HeaderText = "Cliente_id";
-            this.Column21.Name = "Column21";
-            this.Column21.ReadOnly = true;
-            // 
-            // comboBoxTipo
-            // 
-            this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Items.AddRange(new object[] {
-            "Residencial",
-            "Celular",
-            "Fixo"});
-            this.comboBoxTipo.Location = new System.Drawing.Point(148, 306);
-            this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxTipo.TabIndex = 9;
             // 
             // FrmCliente
             // 

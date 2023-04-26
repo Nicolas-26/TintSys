@@ -76,7 +76,8 @@ namespace TintSysDesk
         }
         private void CarregaGrid()
         {
-            List<ItemPedido> lista = ItemPedido.ListarPorPedido(Convert.ToInt32(txtPedido.Text));
+            List<ItemPedido> lista = ItemPedido.ListarPorPedido(Convert.ToInt32(textBoxCodigo.Text));
+            dataGridView1.Rows.Clear();
             double subtotal = 0;
             int c = 0;
             foreach (var item in lista)

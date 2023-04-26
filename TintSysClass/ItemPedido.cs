@@ -82,6 +82,26 @@ namespace TintSysClass
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
+                item = new ItemPedido();
+                item.Id = dr.GetInt32(0);
+                item.Produto = Produto.ObterPorId(dr.GetInt32(2));
+                item.Preco = dr.GetDouble(3);
+                item.Quantidade = dr.GetDouble(4);
+                item.Desconto = dr.GetDouble(5);
+                itens.Add(item);
+            }
+            return itens;
+        }
+
+        public static List<ItemPedido> Listar()
+        {
+            ItemPedido item = null;
+            List<ItemPedido> itens = new List<ItemPedido>();
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from itempedido";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
                 item.Id = dr.GetInt32(0);
                 item.Produto = Produto.ObterPorId(dr.GetInt32(2));
                 item.Preco = dr.GetDouble(3);

@@ -52,17 +52,17 @@
             this.labelDescricao = new System.Windows.Forms.Label();
             this.labelCodigo = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.labelTotal = new System.Windows.Forms.Label();
+            this.textBoxTotal = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.clnHashTag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnCod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnUnd = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clnUnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnQtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelTotal = new System.Windows.Forms.Label();
-            this.textBoxTotal = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -310,6 +310,32 @@
             this.dataGridView1.Size = new System.Drawing.Size(700, 107);
             this.dataGridView1.TabIndex = 5;
             // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.Location = new System.Drawing.Point(557, 563);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(77, 20);
+            this.labelTotal.TabIndex = 0;
+            this.labelTotal.Text = "Total R$";
+            // 
+            // textBoxTotal
+            // 
+            this.textBoxTotal.Location = new System.Drawing.Point(640, 563);
+            this.textBoxTotal.Name = "textBoxTotal";
+            this.textBoxTotal.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTotal.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(660, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(10, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "-";
+            // 
             // clnHashTag
             // 
             this.clnHashTag.Frozen = true;
@@ -340,6 +366,8 @@
             this.clnUnd.HeaderText = "Und";
             this.clnUnd.Name = "clnUnd";
             this.clnUnd.ReadOnly = true;
+            this.clnUnd.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clnUnd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clnUnd.Width = 60;
             // 
             // clnPreco
@@ -371,32 +399,6 @@
             this.clnTotal.HeaderText = "Total R$";
             this.clnTotal.Name = "clnTotal";
             this.clnTotal.ReadOnly = true;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.Location = new System.Drawing.Point(557, 563);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(77, 20);
-            this.labelTotal.TabIndex = 0;
-            this.labelTotal.Text = "Total R$";
-            // 
-            // textBoxTotal
-            // 
-            this.textBoxTotal.Location = new System.Drawing.Point(640, 563);
-            this.textBoxTotal.Name = "textBoxTotal";
-            this.textBoxTotal.Size = new System.Drawing.Size(100, 20);
-            this.textBoxTotal.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(660, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(10, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "-";
             // 
             // FrmPedido
             // 
@@ -451,16 +453,16 @@
         private System.Windows.Forms.Label labelDesconto;
         private System.Windows.Forms.Label labelQuantidade;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.TextBox textBoxTotal;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnHashTag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnCod;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDescricao;
-        private System.Windows.Forms.DataGridViewComboBoxColumn clnUnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnUnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnPreco;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnQtd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnTotal;
-        private System.Windows.Forms.Label labelTotal;
-        private System.Windows.Forms.TextBox textBoxTotal;
-        private System.Windows.Forms.Label label2;
     }
 }

@@ -151,9 +151,9 @@ namespace TintSysDesk
         private void btnInserirTel_Click(object sender, EventArgs e)
         {
             Telefone tel = new Telefone(
-                txtNumeroTel.Text, comboBoxTipo.Text
+               Convert.ToInt32(txtClienteidTel.Text), txtNumeroTel.Text, comboBoxTipo.Text
                 );
-            tel.Inserir();
+            tel.Inserir(7);
             txtIdTel.Text = tel.Id.ToString();
             CarregaGridTel();
         }
@@ -189,6 +189,11 @@ namespace TintSysDesk
                 );
             tel.Atualizar(Convert.ToInt32(txtIdTel.Text));
             CarregaGridTel();
+        }
+
+        private void tpgTelefones_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

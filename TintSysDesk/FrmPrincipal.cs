@@ -67,5 +67,12 @@ namespace TintSysDesk
             frmListarUser.MdiParent = this;
             frmListarUser.Show();
         }
+
+        private void listarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmListarPedidos frmListarPedidos = new FrmListarPedidos();
+            frmListarPedidos.MdiParent = this;
+            frmListarPedidos.Show();
+        }
     }
 }

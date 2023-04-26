@@ -33,18 +33,15 @@ namespace TintSysClass
             ArquivadoEm = arquivado_em;
             HashCode = hashCode;
         }
-        //public Pedido(int id, DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, DateTime arquivado_em, string hashCode)
-        //{
-        //    Id = id;
-        //    Data = data;
-        //    Status = status;
-        //    Desconto = desconto;
-        //    Cliente = clientes;
-        //    Usuario = usuarios;
-        //    ArquivadoEm = arquivado_em;
-        //    HashCode = hashCode;
-            
-        //}
+        public Pedido(DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, string hashCode)
+        {
+            Data = data;
+            Status = status;
+            Desconto = desconto;
+            Cliente = clientes;
+            Usuario = usuarios;
+            HashCode = hashCode;
+        }
         public Pedido(DateTime data, string status, double desconto, Cliente clientes, Usuarios usuarios, DateTime arquivadoem, string hashCode)
         {
             Data = data;
@@ -129,22 +126,22 @@ namespace TintSysClass
         }
         public static List<Pedido> Listar()
         {
-            List<Pedido> lista = null;
+            List<Pedido> lista = new List<Pedido>();
+            Pedido ped = null;
             var cmd = Banco.Abrir();
             cmd.CommandText = "select * from pedidos";
             var dr = cmd.ExecuteReader();
             while(dr.Read())
             {
-                lista.Add(new Pedido(
-                    dr.GetInt32(0),
-                    dr.GetDateTime(1),
-                    dr.GetString(2),
-                    dr.GetDouble(3),
-                    Cliente.ObterPorId(dr.GetInt32(4)),
-                    Usuarios.ObterPorId(dr.GetInt32(5)),
-                    dr.GetDateTime(6),
-                    dr.GetString(7)
-                    ));
+                ped = new Pedido();
+                ped.Id = dr.GetInt32(0);
+                ped.Data = dr.GetDateTime(1);
+                ped.Status = dr.GetString(2);
+                ped.Desconto = dr.GetDouble(3);
+                ped.Cliente = Cliente.ObterPorId(dr.GetInt32(4));
+                ped.Usuario = Usuarios.ObterPorId(dr.GetInt32(5));
+                ped.HashCode = dr.GetString(7);
+                lista.Add(ped);
             }
             Banco.Fechar(cmd);
             return lista;
